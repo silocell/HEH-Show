@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Homework Launchpad</title>
-<meta name="description" content="Homework Launchpad: free homework tools, an Office-style Suite, an AI helper and learning games, designed, built and run by a student.">
+<title>Chausima</title>
+<meta name="description" content="Chausima: a notebook of projects built by a student, starring the Homework Launchpad - homework tools, an Office-style Suite, an AI helper and learning games.">
 <link rel="icon" type="image/png" href="/favicon.png">
 <meta name="theme-color" content="#1f3a93">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -103,7 +103,7 @@ h2{font-family:var(--display);font-weight:800;color:var(--ink);font-size:clamp(2
 .desc p{margin:0;max-width:46em}
 .desc .meta{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:6px;font-size:.92rem}
 .desc .meta a{font-weight:700}
-.os{background:linear-gradient(transparent 52%,var(--hl) 52%,var(--hl) 88%,transparent 88%);color:var(--graphite);font-weight:700;padding:0 2px}
+.os{background:linear-gradient(transparent 80%,var(--hl) 80%,var(--hl) 96%,transparent 96%);color:var(--graphite);font-weight:700;padding:0 1px}
 .login{color:var(--soft)}
 .legend{display:flex;flex-wrap:wrap;gap:8px 22px;margin:0 0 18px;font-size:.95rem;color:var(--soft)}
 
@@ -132,6 +132,54 @@ h2{font-family:var(--display);font-weight:800;color:var(--ink);font-size:clamp(2
 footer{padding:80px 0 60px;color:var(--soft);font-size:.95rem}
 footer .note{font-size:1.4rem;color:var(--ink);margin-bottom:8px}
 
+
+/* ---------- live question ---------- */
+.quiz{position:relative;display:grid;grid-template-columns:auto 5.5rem auto auto;align-items:center;gap:8px 12px;margin-top:34px;padding:14px 18px;background:var(--card);border:2px dashed var(--line);border-radius:12px;max-width:31rem;transform:rotate(.6deg)}
+.qhead{grid-column:1/-1;margin:0;color:var(--soft)}
+.qq{font-family:var(--display);font-weight:800;font-size:1.9rem;color:var(--ink)}
+.quiz input{font:700 1.6rem var(--hand);color:var(--ink);width:100%;border:0;border-bottom:2px solid var(--ink);background:transparent;padding:0 4px;text-align:center}
+.quiz input:focus{outline:none;border-bottom-color:var(--margin)}
+.qbtn{padding:8px 14px;font-size:.95rem}
+.qmark{width:48px;height:40px}
+.qmark svg{width:48px;height:40px}
+.qmark path{fill:none;stroke:var(--tick);stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:80;stroke-dashoffset:80;animation:ink .45s ease-out forwards}
+.qmsg{grid-column:1/-1;margin:0;min-height:1.3em}
+/* ---------- pen circle on the short links ---------- */
+.short{position:relative}
+.short svg.ring{position:absolute;left:-10px;top:-9px;width:calc(100% + 20px);height:calc(100% + 18px);pointer-events:none;overflow:visible}
+.short svg.ring path{fill:none;stroke:var(--margin);stroke-width:2.4;stroke-linecap:round;stroke-dasharray:101;stroke-dashoffset:101;vector-effect:non-scaling-stroke;opacity:0}
+.short:hover svg.ring path,.short:focus-visible svg.ring path{opacity:1}
+.short:hover svg.ring path,.short:focus-visible svg.ring path{animation:ink .5s ease-out forwards}
+/* ---------- draw on the page ---------- */
+#ink{position:absolute;left:0;top:0;z-index:5;pointer-events:none;touch-action:auto}
+.drawing #ink{pointer-events:auto;touch-action:none;cursor:crosshair}
+.drawing .page{user-select:none}
+.case{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:8;display:flex;align-items:center;gap:4px;padding:6px 8px;background:var(--card);border:2px solid var(--ink);border-radius:999px;box-shadow:0 10px 26px -14px rgba(20,30,80,.55)}
+.case button{border:0;background:transparent;color:var(--graphite);font:600 .9rem var(--body);height:40px;min-width:40px;padding:0 10px;border-radius:999px;cursor:pointer;display:flex;align-items:center;gap:6px}
+.case button:hover{background:var(--grid)}
+.case button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.case .dot{width:14px;height:14px;border-radius:50%;display:inline-block;border:2px solid var(--paper)}
+.case .sep{width:1px;height:24px;background:var(--line);margin:0 2px}
+.case .lbl{white-space:nowrap}
+@media (max-width:520px){.case .lbl{display:none}.case{gap:2px;padding:5px}}
+@media print{.case,#ink{display:none}}
+
+/* ---------- the rocket that pulls you back to the top ---------- */
+.totop{position:fixed;right:18px;bottom:16px;z-index:9;width:58px;height:72px;border:0;background:transparent;cursor:pointer;padding:0;opacity:0;transform:translateY(20px);transition:opacity .25s,transform .25s;pointer-events:none}
+.totop.show{opacity:1;transform:none;pointer-events:auto}
+.totop svg{width:100%;height:100%;overflow:visible}
+.totop .b,.tow .b{fill:var(--paper);stroke:var(--ink);stroke-width:3;stroke-linejoin:round}
+.totop .f,.tow .f{fill:none;stroke:var(--margin);stroke-width:3;stroke-linejoin:round;stroke-linecap:round}
+.totop .w,.tow .w{fill:none;stroke:var(--ink);stroke-width:2.4}
+.totop:hover .b,.totop:focus-visible .b{fill:var(--hl)}
+.totop .tip{position:absolute;right:64px;bottom:22px;white-space:nowrap;font-family:var(--hand);color:var(--margin);font-size:1.05rem;opacity:0;transition:opacity .2s}
+.totop:hover .tip,.totop:focus-visible .tip{opacity:1}
+.tow{position:fixed;z-index:9;pointer-events:none;width:58px;height:72px}
+.tow svg{width:100%;height:100%;overflow:visible}
+.tow .rope{position:absolute;left:50%;top:70px;width:0;border-left:3px dotted var(--soft);height:var(--rope,0px)}
+.tow .flame2{fill:var(--hl);stroke:var(--margin);stroke-width:2;animation:flicker .1s steps(2) infinite alternate;transform-origin:29px 66px}
+@media (max-width:520px){.totop{bottom:76px;right:12px}}
+
 @media (max-width:900px){
   :root{--m:14px}
   body{background-size:96px 96px,96px 96px,24px 24px,24px 24px}
@@ -158,16 +206,24 @@ footer .note{font-size:1.4rem;color:var(--ink);margin-bottom:8px}
 <header class="hero">
   <div>
     <dl class="cover">
-      <dt>Name</dt><dd>Homework Launchpad</dd>
-      <dt>Subject</dt><dd>Homework, and everything around it</dd>
+      <dt>Name</dt><dd>Chausima</dd>
+      <dt>Subject</dt><dd>Things I built, starring the Homework Launchpad</dd>
       <dt>Made by</dt><dd>a student, from scratch</dd>
     </dl>
-    <h1><span class="row">Homework</span><span class="row">Launchpad</span></h1>
-    <p class="lede">Homework tools, a ten-app Office-style Suite, an AI helper and a shelf of learning games, all in one place. Designed, built and run by a student, and free for pupils to use.</p>
+    <h1>Chausima</h1>
+    <p class="lede">A notebook of projects designed, built and run by a student. The biggest is the Homework Launchpad: homework tools, a ten-app Office-style Suite, an AI helper and a shelf of learning games, free for pupils to use. Go on, draw on the page.</p>
     <div class="actions">
       <a class="tab go" href="https://hw.chausima.com">Open the Launchpad</a>
       <a class="tab code" href="https://github.com/silocell">Read the code</a>
     </div>
+    <form class="quiz" id="quiz" autocomplete="off">
+      <p class="note qhead">Try a Level Up question</p>
+      <label for="qa" class="qq" id="qq">7 × 8 =</label>
+      <input id="qa" inputmode="numeric" pattern="[0-9]*" maxlength="4" aria-describedby="qmsg">
+      <button type="submit" class="tab go qbtn">Check</button>
+      <span class="qmark" id="qmark" aria-hidden="true"></span>
+      <p class="qmsg note" id="qmsg" role="status"></p>
+    </form>
   </div>
 
   <div class="rocketbox" aria-hidden="true">
@@ -202,8 +258,8 @@ footer .note{font-size:1.4rem;color:var(--ink);margin-bottom:8px}
 <main id="main">
 <section id="parts" class="hasnote">
   <span class="note side">contents</span>
-  <h2>What's inside</h2>
-  <p class="intro">Every part has its own short address, written where the page number would be. Pupils sign in with their school account, and admins can switch any part off for everyone or for one pupil.</p>
+  <h2>The Homework Launchpad</h2>
+  <p class="intro">The main project, page by page. Every part has its own short address, written where the page number would be. Pupils sign in with their school account, and admins can switch any part off for everyone or for one pupil.</p>
   <div class="legend"><span><span class="os">open source</span> code anyone can read and reuse (GNU GPL)</span><span class="login">🔒 needs a school sign-in</span></div>
   <ol class="contents">
     <li><div class="entry"><span class="ic">📋</span><h3>Dashboard</h3><span class="dots"></span><a class="short" href="https://hw.chausima.com">hw.chausima.com</a></div>
@@ -294,9 +350,22 @@ footer .note{font-size:1.4rem;color:var(--ink);margin-bottom:8px}
 </main>
 
 <footer>
-  <p class="note">Thanks for reading! Try it at hw.chausima.com</p>
-  <p>Homework Launchpad is a student project. Open-source parts are under the GNU GPL. <a href="https://civilinitiatives.org/privacy.html">Privacy</a></p>
+  <p class="note">Thanks for reading! Try the Launchpad at hw.chausima.com</p>
+  <p>Chausima and the Homework Launchpad are a student project. Open-source parts are under the GNU GPL. <a href="https://civilinitiatives.org/privacy.html">Privacy</a></p>
 </footer>
+</div>
+
+<button type="button" class="totop" id="toTop" aria-label="Back to the top"><svg viewBox="0 0 58 72" aria-hidden="true"><path class="f" d="M14 44 L5 58 L16 56 M44 44 L53 58 L42 56"/><path class="b" d="M29 4 C 41 14, 44 30, 43 44 L 42 58 L 16 58 L 15 44 C 14 30, 17 14, 29 4 Z"/><circle class="w" cx="29" cy="28" r="7"/></svg><span class="tip">back to the top!</span></button>
+<canvas id="ink" aria-hidden="true"></canvas>
+<div class="case" role="toolbar" aria-label="Draw on the page">
+  <button type="button" id="penToggle" aria-pressed="false" title="Draw on the page (D)">✏️<span class="lbl">Draw</span></button>
+  <span class="sep"></span>
+  <button type="button" data-pen="ink" aria-pressed="true" title="Blue pen"><span class="dot" style="background:#1f3a93"></span><span class="lbl">Pen</span></button>
+  <button type="button" data-pen="red" aria-pressed="false" title="Red pen"><span class="dot" style="background:#e2474b"></span><span class="lbl">Red</span></button>
+  <button type="button" data-pen="hl" aria-pressed="false" title="Highlighter"><span class="dot" style="background:#ffe94a"></span><span class="lbl">Highlight</span></button>
+  <button type="button" data-pen="rub" aria-pressed="false" title="Rubber">🧽<span class="lbl">Rubber</span></button>
+  <span class="sep"></span>
+  <button type="button" id="clearInk" title="Rub everything out">🗑<span class="lbl">Clear</span></button>
 </div>
 
 <script>
@@ -311,6 +380,132 @@ footer .note{font-size:1.4rem;color:var(--ink);margin-bottom:8px}
   addEventListener("load", function(){ setTimeout(go, 250); });
   document.getElementById("again").addEventListener("click", go);
   if(reduce) document.getElementById("again").hidden = true;
+})();
+</script>
+
+<script>
+/* the Level Up question: times tables, marked in red pen */
+(function(){
+  var f = document.getElementById("quiz"), q = document.getElementById("qq"), a = document.getElementById("qa"),
+      msg = document.getElementById("qmsg"), mark = document.getElementById("qmark"), x = 7, y = 8, right = 0;
+  function next(){ x = 3 + Math.floor(Math.random() * 10); y = 3 + Math.floor(Math.random() * 10); q.textContent = x + " \u00d7 " + y + " ="; a.value = ""; }
+  f.addEventListener("submit", function(e){
+    e.preventDefault();
+    var v = parseInt(a.value, 10);
+    if(isNaN(v)){ msg.textContent = "Type a number first."; a.focus(); return; }
+    if(v === x * y){
+      right++;
+      mark.innerHTML = '<svg viewBox="0 0 48 40"><path d="M4 22 C 10 26, 14 31, 18 36 C 25 21, 34 10, 45 3"/></svg>';
+      msg.textContent = right === 1 ? "Correct! +10 points. Here's another." : "Correct again! That's " + right + " in a row.";
+      setTimeout(function(){ mark.innerHTML = ""; next(); a.focus(); }, 1100);
+    } else {
+      right = 0; mark.innerHTML = "";
+      msg.textContent = "Not quite: " + x + " \u00d7 " + y + " is " + (x * y) + ". Try this one.";
+      setTimeout(function(){ next(); a.focus(); }, 1500);
+    }
+  });
+})();
+
+/* pen circles around the short links */
+(function(){
+  var d = "M8 22 C 6 8, 40 3, 70 4 C 110 5, 170 4, 196 14 C 208 22, 196 36, 150 38 C 100 41, 30 41, 12 32 C 4 27, 9 16, 20 12";
+  Array.prototype.forEach.call(document.querySelectorAll(".short"), function(el){
+    el.insertAdjacentHTML("beforeend", '<svg class="ring" viewBox="0 0 210 44" preserveAspectRatio="none" aria-hidden="true"><path pathLength="100" d="' + d + '"/></svg>');
+  });
+})();
+
+/* draw on the page: strokes stay in this browser only */
+(function(){
+  var root = document.documentElement, c = document.getElementById("ink"), ctx = c.getContext("2d"),
+      toggle = document.getElementById("penToggle"), KEY = "chausima.ink", strokes = [], cur = null, tool = "ink", on = false;
+  var COL = { ink:"#1f3a93", red:"#e2474b", hl:"rgba(255,233,74,.55)" };
+  try{ strokes = JSON.parse(localStorage.getItem(KEY) || "[]"); }catch(e){ strokes = []; }
+  function save(){ try{ localStorage.setItem(KEY, JSON.stringify(strokes.slice(-400))); }catch(e){} }
+  function size(){
+    var pg = document.querySelector(".page"), w = document.documentElement.clientWidth, h = pg.offsetTop + pg.offsetHeight, r = window.devicePixelRatio || 1;
+    c.style.width = w + "px"; c.style.height = h + "px"; c.width = Math.round(w * r); c.height = Math.round(h * r);
+    ctx.setTransform(r, 0, 0, r, 0, 0); redraw();
+  }
+  function paint(s){
+    if(!s.p.length) return;
+    ctx.save();
+    var dark = matchMedia("(prefers-color-scheme: dark)").matches;
+    ctx.globalCompositeOperation = s.t === "hl" && !dark ? "multiply" : "source-over";
+    ctx.strokeStyle = s.t === "ink" && matchMedia("(prefers-color-scheme: dark)").matches ? "#f3f1e4" : COL[s.t];
+    ctx.lineWidth = s.t === "hl" ? 18 : 3; ctx.lineCap = "round"; ctx.lineJoin = "round";
+    ctx.beginPath(); ctx.moveTo(s.p[0][0], s.p[0][1]);
+    for(var i = 1; i < s.p.length - 1; i++){ var mx = (s.p[i][0] + s.p[i+1][0]) / 2, my = (s.p[i][1] + s.p[i+1][1]) / 2; ctx.quadraticCurveTo(s.p[i][0], s.p[i][1], mx, my); }
+    if(s.p.length === 1) ctx.lineTo(s.p[0][0] + .1, s.p[0][1]); else ctx.lineTo(s.p[s.p.length-1][0], s.p[s.p.length-1][1]);
+    ctx.stroke(); ctx.restore();
+  }
+  function redraw(){ ctx.clearRect(0, 0, c.width, c.height); strokes.forEach(paint); if(cur && cur.p) paint(cur); }
+  function pt(e){ var r = c.getBoundingClientRect(); return [Math.round(e.clientX - r.left), Math.round(e.clientY - r.top)]; }
+  function rub(p){
+    var before = strokes.length;
+    strokes = strokes.filter(function(s){ return !s.p.some(function(q){ return Math.abs(q[0]-p[0]) < 14 && Math.abs(q[1]-p[1]) < 14; }); });
+    if(strokes.length !== before){ redraw(); save(); }
+  }
+  c.addEventListener("pointerdown", function(e){
+    if(!on) return; c.setPointerCapture(e.pointerId);
+    if(tool === "rub"){ cur = { rub:true }; rub(pt(e)); return; }
+    cur = { t:tool, p:[pt(e)] }; redraw();
+  });
+  c.addEventListener("pointermove", function(e){
+    if(!cur) return;
+    if(cur.rub){ rub(pt(e)); return; }
+    cur.p.push(pt(e)); redraw();
+  });
+  function end(){ if(cur && !cur.rub && cur.p.length){ strokes.push(cur); save(); } cur = null; }
+  c.addEventListener("pointerup", end); c.addEventListener("pointercancel", end);
+  function setOn(v){ on = v; root.classList.toggle("drawing", v); toggle.setAttribute("aria-pressed", String(v)); toggle.querySelector(".lbl").textContent = v ? "Drawing" : "Draw"; }
+  toggle.addEventListener("click", function(){ setOn(!on); });
+  Array.prototype.forEach.call(document.querySelectorAll("[data-pen]"), function(b){
+    b.addEventListener("click", function(){
+      tool = b.dataset.pen; setOn(true);
+      Array.prototype.forEach.call(document.querySelectorAll("[data-pen]"), function(x){ x.setAttribute("aria-pressed", String(x === b)); });
+    });
+  });
+  document.getElementById("clearInk").addEventListener("click", function(){ strokes = []; save(); redraw(); });
+  document.addEventListener("keydown", function(e){
+    if(e.target.closest("input,textarea")) return;
+    if(e.key === "d" || e.key === "D") setOn(!on);
+    if(e.key === "Escape" && on) setOn(false);
+  });
+  addEventListener("resize", size); addEventListener("load", size); size();
+})();
+</script>
+
+<script>
+/* the rocket pulls you back to the top */
+(function(){
+  var btn = document.getElementById("toTop"), reduce = matchMedia("(prefers-reduced-motion: reduce)").matches, busy = false;
+  var FLAME = '<path class="flame2" d="M21 60 Q29 86 37 60 Q33 70 29 78 Q25 70 21 60Z"/>';
+  function show(){ btn.classList.toggle("show", scrollY > innerHeight * .8 && !busy); }
+  addEventListener("scroll", show, { passive:true }); show();
+  btn.addEventListener("click", function(){
+    if(busy) return;
+    var start = scrollY;
+    if(reduce || start < 10){ scrollTo(0, 0); afterTop(); return; }
+    busy = true; btn.classList.remove("show");
+    var r = btn.getBoundingClientRect(), ship = document.createElement("div");
+    ship.className = "tow"; ship.style.left = r.left + "px"; ship.style.top = r.top + "px";
+    ship.innerHTML = btn.querySelector("svg").outerHTML.replace("</svg>", FLAME + "</svg>") + '<span class="rope"></span>';
+    document.body.appendChild(ship);
+    var rope = ship.querySelector(".rope"), t0 = performance.now(), D = 1300, top0 = r.top;
+    root().style.scrollBehavior = "auto";
+    (function step(now){
+      var t = Math.min(1, (now - t0) / D), e = t < .18 ? 0 : Math.pow((t - .18) / .82, 2.2);  // a short rumble, then it speeds up
+      var shake = t < .18 ? (Math.random() - .5) * 3 : 0;
+      var y = top0 - e * (top0 + 90);
+      ship.style.transform = "translate(" + shake + "px," + (y - top0) + "px)";
+      rope.style.setProperty("--rope", Math.max(0, innerHeight - (y + 70)) + "px");
+      scrollTo(0, start * (1 - e));
+      if(t < 1) requestAnimationFrame(step);
+      else { ship.remove(); scrollTo(0, 0); busy = false; root().style.scrollBehavior = ""; afterTop(); }
+    })(t0);
+  });
+  function root(){ return document.documentElement; }
+  function afterTop(){ var a = document.getElementById("again"); if(a && !reduce) setTimeout(function(){ a.click(); }, 150); show(); }
 })();
 </script>
 </body>
