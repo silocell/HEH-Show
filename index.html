@@ -3,164 +3,315 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Homework Launchpad - Overview</title>
-<meta name="description" content="An overview of the Homework Launchpad: a free set of homework tools, learning games and apps built by a student, much of it open source.">
+<title>Homework Launchpad</title>
+<meta name="description" content="Homework Launchpad: free homework tools, an Office-style Suite, an AI helper and learning games, designed, built and run by a student.">
 <link rel="icon" type="image/png" href="/favicon.png">
-<meta name="theme-color" content="#4f46e5">
+<meta name="theme-color" content="#1f3a93">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Kalam:wght@400;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#f6f7fb;--card:#fff;--ink:#141a2e;--soft:#5b6383;--rule:#dfe3ef;--a1:#4f46e5;--a2:#7c3aed;--ok:#15803d;--okbg:#dcfce7;--tag:#eef0fb;
-  --font:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color-scheme:light}
-@media (prefers-color-scheme:dark){:root{--bg:#0d1020;--card:#161a2e;--ink:#e8eaf6;--soft:#9aa1c0;--rule:#272c47;--a1:#818cf8;--a2:#a78bfa;--ok:#4ade80;--okbg:#14301f;--tag:#20253f;color-scheme:dark}}
+/* ---------- tokens: an exercise book (light) / a chalkboard (dark) ---------- */
+:root{
+  --paper:#fdfdf8; --grid:#d5e4f5; --grid-strong:#b9d1ee; --margin:#e2474b;
+  --ink:#1f3a93; --graphite:#262a33; --soft:#5b6170; --hl:#ffe94a; --tick:#d62f35;
+  --card:#ffffff; --line:#c9d6e8;
+  --display:"Bricolage Grotesque",system-ui,sans-serif;
+  --body:"Atkinson Hyperlegible",system-ui,sans-serif;
+  --hand:"Kalam","Comic Sans MS",cursive;
+  --m:112px; /* where the red margin line sits */
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root{
+  --paper:#1d2a24; --grid:rgba(255,255,255,.05); --grid-strong:rgba(255,255,255,.09); --margin:#f07a7d;
+  --ink:#f3f1e4; --graphite:#ecebe2; --soft:#aab4ad; --hl:#e8d34a; --tick:#ff8b8e;
+  --card:#24332c; --line:rgba(255,255,255,.14); color-scheme:dark}}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 var(--font)}
-a{color:var(--a1)}
-.wrap{max-width:1040px;margin:0 auto;padding:0 16px}
-header.hero{background:linear-gradient(135deg,#4f46e5,#7c3aed 60%,#a855f7);color:#fff;padding:56px 0 64px}
-.hero .logo{width:56px;height:56px;border-radius:16px;background:rgba(255,255,255,.18);display:grid;place-items:center;font-size:1.8rem;margin-bottom:14px}
-.hero h1{margin:0 0 10px;font-size:clamp(1.9rem,5vw,2.8rem);line-height:1.15;letter-spacing:-.01em}
-.hero p{margin:0;max-width:640px;font-size:1.1rem;opacity:.95}
-.stats{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
-.stats span{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:6px 14px;font-size:.9rem}
-.cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
-.btn{display:inline-block;padding:10px 18px;border-radius:12px;background:#fff;color:#3730a3;font-weight:650;text-decoration:none}
-.btn.ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.6)}
-section{padding:44px 0 8px}
-h2{font-size:1.5rem;margin:0 0 6px}
-.lead{color:var(--soft);margin:0 0 20px;max-width:700px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
-.card{background:var(--card);border:1px solid var(--rule);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:8px}
-.card .top{display:flex;align-items:center;gap:10px}
-.card .ic{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;font-size:1.3rem;background:var(--tag);flex:none}
-.card h3{margin:0;font-size:1.08rem}
-.card p{margin:0;color:var(--soft);font-size:.95rem;flex:1}
-.tags{display:flex;flex-wrap:wrap;gap:6px}
-.tag{font-size:.74rem;font-weight:650;padding:2px 9px;border-radius:999px;background:var(--tag);color:var(--soft)}
-.tag.os{background:var(--okbg);color:var(--ok)}
-.links{display:flex;flex-wrap:wrap;gap:12px;font-size:.92rem;font-weight:600}
-.links a{text-decoration:none}
-.links a:hover{text-decoration:underline}
-.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
-.list{margin:0;padding:0;list-style:none;display:grid;gap:10px}
-.list li{background:var(--card);border:1px solid var(--rule);border-radius:14px;padding:12px 14px}
-.list b{display:block}
-.list span{color:var(--soft);font-size:.93rem}
-.short{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
-.short a{display:block;background:var(--card);border:1px solid var(--rule);border-radius:14px;padding:12px 14px;text-decoration:none;color:var(--ink)}
-.short code{font-family:ui-monospace,Menlo,Consolas,monospace;color:var(--a1);font-weight:650}
-.short small{display:block;color:var(--soft)}
-footer{padding:40px 0 48px;color:var(--soft);font-size:.88rem}
+html{scroll-behavior:smooth}
+body{margin:0;color:var(--graphite);font:17px/1.6 var(--body);
+  background-color:var(--paper);
+  background-image:
+    linear-gradient(var(--grid-strong) 1px,transparent 1px),linear-gradient(90deg,var(--grid-strong) 1px,transparent 1px),
+    linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:120px 120px,120px 120px,24px 24px,24px 24px;}
+body::before{content:"";position:fixed;top:0;bottom:0;left:var(--m);width:2px;background:var(--margin);opacity:.75;pointer-events:none;z-index:0}
+a{color:var(--ink)}
+:focus-visible{outline:3px solid var(--margin);outline-offset:3px;border-radius:4px}
+.page{position:relative;z-index:1;padding-left:calc(var(--m) + 40px);padding-right:40px;max-width:1240px}
+.note{font-family:var(--hand);color:var(--margin);font-size:1.15rem;line-height:1.3}
+.skip{position:absolute;left:-999px}.skip:focus{left:16px;top:16px;background:var(--card);padding:8px 12px;z-index:9}
+
+/* ---------- hero ---------- */
+.hero{min-height:min(92vh,860px);display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);align-items:center;gap:24px;padding-top:56px;padding-bottom:56px}
+.cover{display:inline-grid;grid-template-columns:auto 1fr;gap:2px 14px;border:2px solid var(--ink);border-radius:6px;padding:12px 16px;background:var(--card);font-size:.95rem;margin-bottom:34px;transform:rotate(-1deg)}
+.cover dt{color:var(--soft)}
+.cover dd{margin:0;font-family:var(--hand);color:var(--ink);font-size:1.12rem;border-bottom:1px dashed var(--line)}
+h1{font-family:var(--display);font-weight:800;color:var(--ink);font-size:clamp(3.1rem,9vw,7.4rem);line-height:.9;letter-spacing:-.035em;margin:0 0 22px;font-variation-settings:"opsz" 96}
+h1 .row{display:block}
+h1 .row+.row{padding-left:.55em}
+.lede{font-size:1.25rem;max-width:34em;margin:0 0 28px;color:var(--graphite)}
+.actions{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.tab{display:inline-block;text-decoration:none;font-family:var(--display);font-weight:600;font-size:1.05rem;padding:12px 20px;border-radius:4px 4px 10px 4px;border:2px solid var(--ink)}
+.tab.go{background:var(--ink);color:var(--paper)}
+.tab.go:hover{transform:translateY(-1px)}
+.tab.code{color:var(--ink);background:var(--card)}
+.rocketbox{position:relative;height:min(78vh,640px)}
+.rocketbox svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.pen{fill:none;stroke:var(--ink);stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round}
+.pen.red{stroke:var(--margin)}
+.pen.thin{stroke-width:2}
+.flame{fill:var(--hl);stroke:var(--margin);stroke-width:2.4;stroke-linejoin:round}
+.trail{fill:none;stroke:var(--soft);stroke-width:2.4;stroke-dasharray:2 12;stroke-linecap:round}
+.relaunch{position:absolute;right:0;bottom:-6px;background:none;border:0;cursor:pointer;padding:6px 4px}
+.relaunch:hover{text-decoration:underline}
+/* the one moment: draw, then lift off */
+#rocket .draw{stroke-dasharray:var(--len);stroke-dashoffset:var(--len)}
+.drawn #rocket .draw{animation:ink 1.1s cubic-bezier(.6,.1,.3,1) forwards;animation-delay:var(--d,0s)}
+@keyframes ink{to{stroke-dashoffset:0}}
+#ship{transform-box:view-box;transform-origin:200px 380px}
+.flame,.trail{opacity:0}
+.body{fill:var(--paper)}
+.trailmask{stroke-dasharray:1110;stroke-dashoffset:1110}
+.launch .flame{animation:flicker .12s steps(2) infinite alternate;opacity:1}
+@keyframes flicker{to{transform:scaleY(1.18) translateY(3px)}}
+.launch #ship{animation:lift 2.3s cubic-bezier(.55,0,.75,.2) .35s forwards}
+@keyframes lift{0%{transform:translate(0,0)}8%{transform:translate(-2px,2px)}16%{transform:translate(2px,0)}100%{transform:translate(70px,-1100px) rotate(8deg)}}
+.launch .trail{opacity:1}
+.launch .trailmask{animation:reveal 2.3s cubic-bezier(.55,0,.75,.2) .35s forwards}
+@keyframes reveal{to{stroke-dashoffset:0}}
+.launch .padtext{animation:fade .6s 2.2s forwards}
+.padtext{opacity:0}
+@keyframes fade{to{opacity:1}}
+
+/* ---------- sections ---------- */
+section{padding:72px 0 24px}
+h2{font-family:var(--display);font-weight:800;color:var(--ink);font-size:clamp(2rem,4.6vw,3.2rem);letter-spacing:-.02em;line-height:1;margin:0 0 10px}
+.intro{max-width:38em;color:var(--soft);margin:0 0 30px}
+.hasnote{position:relative}
+.hasnote>.note.side{position:absolute;right:calc(100% + 50px);top:8px;width:92px;font-size:1.05rem;text-align:right;transform:rotate(-4deg)}
+
+/* contents page */
+.contents{list-style:none;margin:0;padding:0;max-width:980px}
+.contents li{border-bottom:1px solid var(--line)}
+.entry{display:grid;grid-template-columns:2.2rem minmax(0,auto) 1fr auto;align-items:baseline;gap:0 12px;padding:14px 0 6px}
+.entry .ic{font-size:1.35rem;line-height:1}
+.entry h3{margin:0;font-family:var(--display);font-weight:600;font-size:1.45rem;color:var(--graphite);letter-spacing:-.01em}
+.entry .dots{border-bottom:3px dotted var(--grid-strong);transform:translateY(-6px);min-width:24px}
+.entry .short{font-family:var(--hand);font-weight:700;color:var(--ink);font-size:1.2rem;text-decoration:none;white-space:nowrap}
+.entry .short:hover{text-decoration:underline}
+.desc{display:grid;grid-template-columns:2.2rem 1fr;gap:0 12px;padding:0 0 14px;color:var(--soft)}
+.desc p{margin:0;max-width:46em}
+.desc .meta{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:6px;font-size:.92rem}
+.desc .meta a{font-weight:700}
+.os{background:linear-gradient(transparent 52%,var(--hl) 52%,var(--hl) 88%,transparent 88%);color:var(--graphite);font-weight:700;padding:0 2px}
+.login{color:var(--soft)}
+.legend{display:flex;flex-wrap:wrap;gap:8px 22px;margin:0 0 18px;font-size:.95rem;color:var(--soft)}
+
+/* marking: the safety section */
+.marked{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:18px 44px;max-width:1040px}
+.marked li{position:relative;padding:4px 0 4px 54px}
+.marked svg.tick{position:absolute;left:0;top:2px;width:40px;height:34px}
+.marked b{display:block;font-family:var(--display);font-weight:600;font-size:1.2rem;color:var(--graphite)}
+.marked span{color:var(--soft)}
+.stamp{display:inline-block;margin-top:34px;font-family:var(--hand);font-weight:700;color:var(--tick);font-size:1.6rem;border:3px solid var(--tick);border-radius:10px;padding:4px 16px;transform:rotate(-6deg)}
+
+/* the stuck-in diagram */
+.sheet{background:var(--card);border:1px solid var(--line);padding:22px 22px 14px;max-width:1040px;transform:rotate(.4deg);box-shadow:0 1px 0 var(--line),0 14px 30px -24px rgba(31,58,147,.45);position:relative}
+.sheet::before,.sheet::after{content:"";position:absolute;top:-12px;width:110px;height:26px;background:rgba(255,233,74,.55);border:1px solid rgba(0,0,0,.05)}
+.sheet::before{left:28px;transform:rotate(-5deg)}.sheet::after{right:28px;transform:rotate(4deg)}
+.sheet svg{width:100%;height:auto;display:block}
+.sheet text{font-family:var(--hand);fill:var(--graphite)}
+.sheet .box{fill:none;stroke:var(--ink);stroke-width:2.2}
+.sheet .arr{fill:none;stroke:var(--margin);stroke-width:2.2;stroke-linecap:round;marker-end:url(#head)}
+.sheet .label{font-size:21px;font-weight:700;fill:var(--ink)}
+.sheet .small{font-size:15px;fill:var(--soft)}
+.stack{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:12px 40px;margin-top:26px;max-width:1040px}
+.stack p{margin:0}
+.stack b{font-family:var(--display);color:var(--ink)}
+
+footer{padding:80px 0 60px;color:var(--soft);font-size:.95rem}
+footer .note{font-size:1.4rem;color:var(--ink);margin-bottom:8px}
+
+@media (max-width:900px){
+  :root{--m:14px}
+  body{background-size:96px 96px,96px 96px,24px 24px,24px 24px}
+  .page{padding-left:34px;padding-right:18px}
+  .hero{grid-template-columns:1fr;min-height:0;padding-top:28px}
+  .rocketbox{height:420px;order:-1;margin:-10px 0 -30px}
+  .hasnote>.note.side{position:static;display:block;width:auto;text-align:left;transform:none;margin-bottom:6px}
+  .entry{grid-template-columns:1.8rem minmax(0,1fr) auto}
+  .entry .dots{display:none}
+  .desc{grid-template-columns:1.8rem 1fr}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  #rocket .draw{stroke-dashoffset:0!important;animation:none!important}
+  .launch #ship,.launch .trailmask,.launch .flame,.launch .padtext{animation:none!important}
+  .padtext{opacity:1}
+}
 </style>
 </head>
 <body>
+<a class="skip" href="#parts">Skip to the contents</a>
+<div class="page">
+
 <header class="hero">
-  <div class="wrap">
-    <div class="logo" aria-hidden="true">🚀</div>
-    <h1>Homework Launchpad</h1>
-    <p>A free set of homework tools, learning games and apps for secondary-school pupils, designed, built and run by a student. This page is a quick overview for teachers and testers.</p>
-    <div class="stats"><span>15+ websites</span><span>Office-style Suite with 10 apps</span><span>Apps for Android, Windows, Mac, Linux and iPhone</span><span>Open-source games</span></div>
-    <div class="cta"><a class="btn" href="https://civilinitiatives.org/">Open the Launchpad</a><a class="btn ghost" href="https://github.com/silocell">Code on GitHub</a></div>
+  <div>
+    <dl class="cover">
+      <dt>Name</dt><dd>Homework Launchpad</dd>
+      <dt>Subject</dt><dd>Homework, and everything around it</dd>
+      <dt>Made by</dt><dd>a student, from scratch</dd>
+    </dl>
+    <h1><span class="row">Homework</span><span class="row">Launchpad</span></h1>
+    <p class="lede">Homework tools, a ten-app Office-style Suite, an AI helper and a shelf of learning games, all in one place. Designed, built and run by a student, and free for pupils to use.</p>
+    <div class="actions">
+      <a class="tab go" href="https://hw.chausima.com">Open the Launchpad</a>
+      <a class="tab code" href="https://github.com/silocell">Read the code</a>
+    </div>
+  </div>
+
+  <div class="rocketbox" aria-hidden="true">
+    <svg id="rocket" viewBox="0 0 400 640" role="img">
+      <!-- the launch trail, revealed as the rocket climbs -->
+      <defs><mask id="tm" maskUnits="userSpaceOnUse" x="-200" y="-900" width="800" height="1500"><path class="trailmask" d="M200 470 L 270 -630" stroke="#fff" stroke-width="14" fill="none"/></mask></defs>
+      <path class="trail" mask="url(#tm)" d="M200 470 L 270 -630"/>
+      <g id="ship">
+        <path class="flame" d="M184 446 Q200 520 216 446 Q208 470 200 492 Q192 470 184 446Z"/>
+        <!-- body -->
+        <path class="pen draw body" style="--len:760;--d:.0s" d="M200 150 C 240 190, 252 260, 248 330 L 246 440 L 154 440 L 152 330 C 148 260, 160 190, 200 150 Z"/>
+        <!-- window -->
+        <circle class="pen draw" style="--len:190;--d:.55s" cx="200" cy="262" r="28"/>
+        <circle class="pen thin draw" style="--len:120;--d:.75s" cx="200" cy="262" r="17"/>
+        <!-- fins -->
+        <path class="pen red draw" style="--len:260;--d:.85s" d="M154 360 L 112 420 L 116 452 L 154 432"/>
+        <path class="pen red draw" style="--len:260;--d:.95s" d="M246 360 L 288 420 L 284 452 L 246 432"/>
+        <!-- nozzle and stripes -->
+        <path class="pen draw" style="--len:140;--d:1.05s" d="M176 440 L 182 456 L 218 456 L 224 440"/>
+        <path class="pen thin draw" style="--len:110;--d:1.15s" d="M156 330 Q 200 342 244 330"/>
+        <path class="pen thin draw" style="--len:110;--d:1.2s" d="M154 378 Q 200 390 246 378"/>
+      </g>
+      <!-- the pad -->
+      <path class="pen draw" style="--len:330;--d:1.3s" d="M60 500 L 340 500"/>
+      <path class="pen thin draw" style="--len:180;--d:1.45s" d="M110 500 L 140 540 M 290 500 L 260 540 M 140 540 L 260 540"/>
+      <text class="note padtext" x="200" y="590" text-anchor="middle">lift-off!</text>
+    </svg>
+    <button class="relaunch note" type="button" id="again">launch it again ↺</button>
   </div>
 </header>
 
-<main class="wrap">
-<section id="parts">
+<main id="main">
+<section id="parts" class="hasnote">
+  <span class="note side">contents</span>
   <h2>What's inside</h2>
-  <p class="lead">Pupils sign in with their school account. Each part can be switched on or off by the Launchpad's admins, for everyone or one person.</p>
-  <div class="grid">
-    <article class="card"><div class="top"><span class="ic">📋</span><h3>Dashboard</h3></div>
-      <p>The home page: homework list and reminders, notes, the Explainer (explains a topic in simple steps), a Wikipedia search and a safe pupil chat.</p>
-      <div class="tags"><span class="tag">Sign-in</span></div>
-      <div class="links"><a href="https://civilinitiatives.org/">Open</a><a href="https://github.com/silocell/heh-homework">Code</a></div></article>
-    <article class="card"><div class="top"><span class="ic">📝</span><h3>Launchpad Suite</h3></div>
-      <p>Ten Office-style apps in the browser: Write, Grid, Present, Notebook, PDF, Draw, Forms, Design, Vids and Files - with ribbons, File menu and Word/Excel/PowerPoint export.</p>
-      <div class="tags"><span class="tag">Sign-in</span></div>
-      <div class="links"><a href="https://suite.civilinitiatives.org/">Open</a><a href="https://github.com/silocell/heh-suite">Code</a></div></article>
-    <article class="card"><div class="top"><span class="ic">✦</span><h3>Launchpad AI</h3></div>
-      <p>An AI chat with a daily free quota. A fast model picks the best free AI for each message; Claude is available for a few pence. Personal details are removed before anything is sent.</p>
-      <div class="tags"><span class="tag">Sign-in</span><span class="tag">Safety-checked</span></div>
-      <div class="links"><a href="https://ai.civilinitiatives.org/">Open</a><a href="https://github.com/silocell/heh-ai">Code</a></div></article>
-    <article class="card"><div class="top"><span class="ic">🎮</span><h3>Game Maker</h3></div>
-      <p>Describe a game in words and get a playable one. Games are checked before they are shared, and run in a locked-down sandbox.</p>
-      <div class="tags"><span class="tag">Sign-in</span></div>
-      <div class="links"><a href="https://sandbox.civilinitiatives.org/">Open</a><a href="https://github.com/silocell/heh-sandbox">Code</a></div></article>
-    <article class="card"><div class="top"><span class="ic">🚀</span><h3>Level Up</h3></div>
-      <p>Maths and other subjects as levels to climb, with practice questions written to the Year 7 curriculum and points to spend.</p>
-      <div class="tags"><span class="tag os">Open source</span></div>
-      <div class="links"><a href="https://learn.civilinitiatives.org/levelup.html">Open</a><a href="https://github.com/silocell/heh-launchpad-learn">Code</a></div></article>
-    <article class="card"><div class="top"><span class="ic">🧠</span><h3>Learning games</h3></div>
-      <p>Times tables, flashcards, geography, history and more - quick games that build up the basics.</p>
-      <div class="tags"><span class="tag os">Open source</span></div>
-      <div class="links"><a href="https://learn.civilinitiatives.org/">Open</a><a href="https://github.com/silocell/heh-launchpad-learn">Code</a></div></article>
-    <article class="card"><div class="top"><span class="ic">🐱</span><h3>Scratch games</h3></div>
-      <p>Games made in Scratch, playable in the browser - and a way to see how Scratch projects work.</p>
-      <div class="tags"><span class="tag os">Open source</span></div>
-      <div class="links"><a href="https://games.civilinitiatives.org/">Open</a><a href="https://github.com/silocell/heh-launchpad-scratch">Code</a></div></article>
-    <article class="card"><div class="top"><span class="ic">👾</span><h3>Arcade</h3></div>
-      <p>Classic arcade-style games for break time.</p>
-      <div class="tags"><span class="tag os">Open source</span></div>
-      <div class="links"><a href="https://arcade.civilinitiatives.org/">Open</a><a href="https://github.com/silocell/heh-arcade">Code</a></div></article>
-    <article class="card"><div class="top"><span class="ic">✏️</span><h3>Doodles</h3></div>
-      <p>A simple drawing space.</p>
-      <div class="tags"><span class="tag os">Open source</span></div>
-      <div class="links"><a href="https://doodles.civilinitiatives.org/">Open</a><a href="https://github.com/silocell/heh-doodles">Code</a></div></article>
-    <article class="card"><div class="top"><span class="ic">🏃</span><h3>Gate Run</h3></div>
-      <p>A 3D runner game in the browser.</p>
-      <div class="tags"><span class="tag os">Open source</span></div>
-      <div class="links"><a href="https://gaterun.civilinitiatives.org/">Open</a><a href="https://github.com/silocell/heh-launchpad-game">Code</a></div></article>
-  </div>
+  <p class="intro">Every part has its own short address, written where the page number would be. Pupils sign in with their school account, and admins can switch any part off for everyone or for one pupil.</p>
+  <div class="legend"><span><span class="os">open source</span> code anyone can read and reuse (GNU GPL)</span><span class="login">🔒 needs a school sign-in</span></div>
+  <ol class="contents">
+    <li><div class="entry"><span class="ic">📋</span><h3>Dashboard</h3><span class="dots"></span><a class="short" href="https://hw.chausima.com">hw.chausima.com</a></div>
+      <div class="desc"><span></span><div><p>Homework list and reminders, notes, the Explainer that breaks any topic into simple steps, a Wikipedia search and a moderated pupil chat.</p><div class="meta"><span class="login">🔒 sign-in</span><a href="https://github.com/silocell/heh-homework">Code</a></div></div></div></li>
+    <li><div class="entry"><span class="ic">📝</span><h3>Launchpad Suite</h3><span class="dots"></span><a class="short" href="https://s.chausima.com">s.chausima.com</a></div>
+      <div class="desc"><span></span><div><p>Ten Office-style apps in the browser: Write, Grid, Present, Notebook, PDF, Draw, Forms, Design, Vids and Files, with ribbons, a File menu and Word, Excel and PowerPoint export.</p><div class="meta"><span class="login">🔒 sign-in</span><a href="https://github.com/silocell/heh-suite">Code</a></div></div></div></li>
+    <li><div class="entry"><span class="ic">✦</span><h3>Launchpad AI</h3><span class="dots"></span><a class="short" href="https://ai.chausima.com">ai.chausima.com</a></div>
+      <div class="desc"><span></span><div><p>An AI chat with free messages every day. A fast model picks the best free AI for each question; Claude is there for a few pence. Personal details are taken out before anything is sent.</p><div class="meta"><span class="login">🔒 sign-in</span><a href="https://github.com/silocell/heh-ai">Code</a></div></div></div></li>
+    <li><div class="entry"><span class="ic">🎮</span><h3>Game Maker</h3><span class="dots"></span><a class="short" href="https://gm.chausima.com">gm.chausima.com</a></div>
+      <div class="desc"><span></span><div><p>Describe a game in words and get one you can play. Every game is checked before it is shared and runs in a locked-down sandbox.</p><div class="meta"><span class="login">🔒 sign-in</span><a href="https://github.com/silocell/heh-sandbox">Code</a></div></div></div></li>
+    <li><div class="entry"><span class="ic">🚀</span><h3>Level Up</h3><span class="dots"></span><a class="short" href="https://m.chausima.com">m.chausima.com</a></div>
+      <div class="desc"><span></span><div><p>Maths and other subjects as levels to climb, with practice questions that follow the Year 7 curriculum.</p><div class="meta"><span class="os">open source</span><a href="https://github.com/silocell/heh-launchpad-learn">Code</a></div></div></div></li>
+    <li><div class="entry"><span class="ic">🧠</span><h3>Learning games</h3><span class="dots"></span><a class="short" href="https://l.chausima.com">l.chausima.com</a></div>
+      <div class="desc"><span></span><div><p>Times tables, flashcards, geography, history and more: quick games that make the basics stick.</p><div class="meta"><span class="os">open source</span><a href="https://github.com/silocell/heh-launchpad-learn">Code</a></div></div></div></li>
+    <li><div class="entry"><span class="ic">🐱</span><h3>Scratch games</h3><span class="dots"></span><a class="short" href="https://g.chausima.com">g.chausima.com</a></div>
+      <div class="desc"><span></span><div><p>Games made in Scratch that play right in the browser, and a peek at how Scratch projects work.</p><div class="meta"><span class="os">open source</span><a href="https://github.com/silocell/heh-launchpad-scratch">Code</a></div></div></div></li>
+    <li><div class="entry"><span class="ic">👾</span><h3>Arcade</h3><span class="dots"></span><a class="short" href="https://ar.chausima.com">ar.chausima.com</a></div>
+      <div class="desc"><span></span><div><p>Classic arcade-style games for break time.</p><div class="meta"><span class="os">open source</span><a href="https://github.com/silocell/heh-arcade">Code</a></div></div></div></li>
+    <li><div class="entry"><span class="ic">✏️</span><h3>Doodles</h3><span class="dots"></span><a class="short" href="https://d.chausima.com">d.chausima.com</a></div>
+      <div class="desc"><span></span><div><p>A simple space to draw and sketch.</p><div class="meta"><span class="os">open source</span><a href="https://github.com/silocell/heh-doodles">Code</a></div></div></div></li>
+    <li><div class="entry"><span class="ic">🏃</span><h3>Gate Run</h3><span class="dots"></span><a class="short" href="https://r.chausima.com">r.chausima.com</a></div>
+      <div class="desc"><span></span><div><p>A 3D runner game in the browser.</p><div class="meta"><span class="os">open source</span><a href="https://github.com/silocell/heh-launchpad-game">Code</a></div></div></div></li>
+    <li><div class="entry"><span class="ic">🎲</span><h3>Play</h3><span class="dots"></span><a class="short" href="https://p.chausima.com">p.chausima.com</a></div>
+      <div class="desc"><span></span><div><p>Every game on the Launchpad in one place, sorted into learning games and just-for-fun.</p><div class="meta"><a href="https://github.com/silocell/heh-play">Code</a></div></div></div></li>
+    <li><div class="entry"><span class="ic">🗂</span><h3>Files</h3><span class="dots"></span><a class="short" href="https://f.chausima.com">f.chausima.com</a></div>
+      <div class="desc"><span></span><div><p>Everything made in the Suite, in one place to find, sort and share.</p><div class="meta"><span class="login">🔒 sign-in</span><a href="https://github.com/silocell/heh-files">Code</a></div></div></div></li>
+    <li><div class="entry"><span class="ic">🎬</span><h3>Videos</h3><span class="dots"></span><a class="short" href="https://v.chausima.com">v.chausima.com</a></div>
+      <div class="desc"><span></span><div><p>Video and Shorts sharing for pupils' projects, with uploads checked before they go public.</p><div class="meta"><span class="login">🔒 sign-in</span><a href="https://github.com/silocell/heh-hosting">Code</a></div></div></div></li>
+    <li><div class="entry"><span class="ic">🛍</span><h3>Shop</h3><span class="dots"></span><a class="short" href="https://sh.chausima.com">sh.chausima.com</a></div>
+      <div class="desc"><span></span><div><p>Spend the points earned in Level Up on avatars and other rewards.</p><div class="meta"><span class="login">🔒 sign-in</span><a href="https://github.com/silocell/heh-shop">Code</a></div></div></div></li>
+    <li><div class="entry"><span class="ic">🧪</span><h3>Lab</h3><span class="dots"></span><a class="short" href="https://lab.chausima.com">lab.chausima.com</a></div>
+      <div class="desc"><span></span><div><p>Where new ideas are tried out before they reach the main Launchpad.</p><div class="meta"><a href="https://github.com/silocell/heh-launchpad-lab">Code</a></div></div></div></li>
+    <li><div class="entry"><span class="ic">🛠</span><h3>Developer page</h3><span class="dots"></span><a class="short" href="https://dev.chausima.com">dev.chausima.com</a></div>
+      <div class="desc"><span></span><div><p>How the Launchpad is put together, for anyone curious about the code.</p><div class="meta"><a href="https://github.com/silocell/silocell.github.io">Code</a></div></div></div></li>
+  </ol>
 </section>
 
-<section id="safety">
-  <h2>Keeping pupils safe</h2>
-  <p class="lead">Built for school from the start. The checks run on the Launchpad's own server, not just in the browser.</p>
-  <div class="two">
-    <ul class="list">
-      <li><b>Safety check on every message</b><span>Chat messages and AI questions go through a safety model with a written school policy. Threats, sexual content and self-harm are blocked; anyone who seems at risk is pointed to Childline.</span></li>
-      <li><b>Personal information removed</b><span>Names, emails, phone numbers, postcodes, addresses and passwords are taken out before anything reaches an AI or is saved.</span></li>
-      <li><b>Speed limits</b><span>Each person can only send a few messages a minute, so nobody can flood the chat or run up AI costs.</span></li>
-    </ul>
-    <ul class="list">
-      <li><b>Admin switches</b><span>The Shop, Game Maker, AI chat and more can be turned off for everyone or one pupil, instantly.</span></li>
-      <li><b>Maintenance lock</b><span>One switch closes every Launchpad site at once, while the owner keeps access to fix things.</span></li>
-      <li><b>School accounts only</b><span>Sign-up is limited to the school's email domain, and photos need the owner's approval.</span></li>
-    </ul>
-  </div>
-</section>
-
-<section id="built">
-  <h2>How it's built</h2>
-  <p class="lead">Mostly free and open technology, run on free tiers.</p>
-  <ul class="list">
-    <li><b>Websites</b><span>Plain HTML, CSS and JavaScript, hosted on GitHub Pages - one repository per site.</span></li>
-    <li><b>Server</b><span>A self-hosted Supabase (Postgres database, sign-in, storage and Deno edge functions) on an Oracle Cloud free-tier server in London.</span></li>
-    <li><b>AI</b><span>Several free AI services (Groq, Cloudflare, OpenRouter, Cohere) with automatic fall-back, plus Claude, all through the Launchpad's server so keys are never in the browser.</span></li>
-    <li><b>Apps</b><span>Lightweight Android, Windows, Mac, Linux and iPhone apps that open the Launchpad, built automatically on GitHub Actions.</span></li>
+<section id="safety" class="hasnote">
+  <span class="note side">checked by the teacher</span>
+  <h2>Built safe for school</h2>
+  <p class="intro">These checks run on the Launchpad's own server, so they can't be switched off from a browser.</p>
+  <svg width="0" height="0" style="position:absolute"><defs><symbol id="t" viewBox="0 0 40 34"><path d="M3 18 C 8 21, 12 26, 15 31 C 21 18, 29 8, 38 2" fill="none" stroke="var(--tick)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></symbol></defs></svg>
+  <ul class="marked">
+    <li><svg class="tick" aria-hidden="true"><use href="#t"/></svg><b>A safety check on every message</b><span>Chat messages and AI questions are read by a safety model following a written school policy. Threats, sexual content and self-harm are blocked, and anyone who seems at risk is pointed to Childline.</span></li>
+    <li><svg class="tick" aria-hidden="true"><use href="#t"/></svg><b>Personal details taken out</b><span>Names, emails, phone numbers, postcodes, addresses and passwords are removed before anything reaches an AI or is saved.</span></li>
+    <li><svg class="tick" aria-hidden="true"><use href="#t"/></svg><b>Speed limits</b><span>Each pupil can send only a few messages a minute, so nobody can flood the chat or run up AI costs.</span></li>
+    <li><svg class="tick" aria-hidden="true"><use href="#t"/></svg><b>Switches for every part</b><span>The Shop, Game Maker, the AI and more can be turned off for everyone or for one pupil, instantly.</span></li>
+    <li><svg class="tick" aria-hidden="true"><use href="#t"/></svg><b>One switch to close everything</b><span>Maintenance mode shuts every Launchpad site at once while it's being fixed.</span></li>
+    <li><svg class="tick" aria-hidden="true"><use href="#t"/></svg><b>School accounts only</b><span>Sign-up is limited to the school's email domain, and photos need approving before anyone else sees them.</span></li>
   </ul>
+  <span class="stamp" aria-hidden="true">Excellent work!</span>
 </section>
 
-<section id="links">
-  <h2>Short links</h2>
-  <p class="lead">Every part has a short address that's easy to type in class.</p>
-  <div class="short">
-    <a href="https://hw.chausima.com"><code>hw.chausima.com</code><small>The Launchpad (dashboard)</small></a>
-    <a href="https://s.chausima.com"><code>s.chausima.com</code><small>Launchpad Suite</small></a>
-    <a href="https://ai.chausima.com"><code>ai.chausima.com</code><small>Launchpad AI</small></a>
-    <a href="https://gm.chausima.com"><code>gm.chausima.com</code><small>Game Maker</small></a>
-    <a href="https://m.chausima.com"><code>m.chausima.com</code><small>Level Up (maths)</small></a>
-    <a href="https://l.chausima.com"><code>l.chausima.com</code><small>Learning games</small></a>
-    <a href="https://g.chausima.com"><code>g.chausima.com</code><small>Scratch games</small></a>
-    <a href="https://ar.chausima.com"><code>ar.chausima.com</code><small>Arcade</small></a>
-    <a href="https://d.chausima.com"><code>d.chausima.com</code><small>Doodles</small></a>
-    <a href="https://r.chausima.com"><code>r.chausima.com</code><small>Gate Run</small></a>
-    <a href="https://p.chausima.com"><code>p.chausima.com</code><small>Play</small></a>
-    <a href="https://f.chausima.com"><code>f.chausima.com</code><small>Files</small></a>
-    <a href="https://v.chausima.com"><code>v.chausima.com</code><small>Videos</small></a>
-    <a href="https://sh.chausima.com"><code>sh.chausima.com</code><small>Shop</small></a>
-    <a href="https://lab.chausima.com"><code>lab.chausima.com</code><small>Lab</small></a>
-    <a href="https://dev.chausima.com"><code>dev.chausima.com</code><small>Developer page</small></a>
+<section id="built" class="hasnote">
+  <span class="note side">how it works</span>
+  <h2>How it's built</h2>
+  <p class="intro">Plain web code, a self-hosted server and a team of AIs, run almost entirely on free tiers.</p>
+  <div class="sheet" role="img" aria-label="Diagram: a pupil's browser or app loads the websites from GitHub Pages, and talks to the Launchpad server on Oracle Cloud, which runs Supabase and asks the AI services.">
+    <svg viewBox="0 0 1000 310" aria-hidden="true">
+      <defs><marker id="head" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10" fill="none" stroke="var(--margin)" stroke-width="2"/></marker></defs>
+      <path class="box" d="M20 116 q2 -4 6 -4 h192 q6 0 5 6 v74 q0 6 -6 5 h-192 q-6 1 -5 -6z"/>
+      <text class="label" x="120" y="150" text-anchor="middle">Your browser</text>
+      <text class="small" x="120" y="176" text-anchor="middle">or the Launchpad app</text>
+      <path class="box" d="M372 24 q1 -5 6 -5 h248 q6 0 5 5 v74 q1 6 -5 6 h-248 q-6 0 -6 -6z"/>
+      <text class="label" x="502" y="58" text-anchor="middle">GitHub Pages</text>
+      <text class="small" x="502" y="84" text-anchor="middle">every website, one repo each</text>
+      <path class="box" d="M372 200 q1 -5 6 -5 h248 q6 -1 5 5 v76 q1 6 -5 6 h-248 q-6 0 -6 -6z"/>
+      <text class="label" x="502" y="234" text-anchor="middle">Launchpad server</text>
+      <text class="small" x="502" y="260" text-anchor="middle">Supabase on Oracle Cloud</text>
+      <path class="box" d="M780 200 q1 -5 6 -5 h190 q6 0 5 5 v76 q1 6 -5 6 h-190 q-6 0 -6 -6z"/>
+      <text class="label" x="880" y="234" text-anchor="middle">AI services</text>
+      <text class="small" x="880" y="260" text-anchor="middle">Groq, OpenRouter and more</text>
+      <path class="arr" d="M226 134 C 290 100, 320 70, 366 64"/>
+      <path class="arr" d="M226 176 C 290 210, 320 232, 366 238"/>
+      <path class="arr" d="M636 238 C 690 230, 726 230, 774 238"/>
+      <text class="small" x="262" y="86">pages</text>
+      <text class="small" x="196" y="262">sign-in, data, safety checks</text>
+      <text class="small" x="652" y="218">keys stay here</text>
+    </svg>
+  </div>
+  <div class="stack">
+    <p><b>Websites.</b> Plain HTML, CSS and JavaScript on GitHub Pages: fast, free and easy to read.</p>
+    <p><b>Server.</b> A self-hosted Supabase (Postgres, sign-in, storage and Deno functions) on Oracle Cloud's free tier.</p>
+    <p><b>AI.</b> Free AI services with automatic fall-back, plus Claude, all through the server so keys never reach the browser.</p>
+    <p><b>Apps.</b> Android, Windows, Mac, Linux and iPhone apps, built automatically by GitHub Actions.</p>
   </div>
 </section>
 </main>
-<footer class="wrap">Homework Launchpad · a student project · open-source parts are under the GNU GPL · <a href="https://civilinitiatives.org/privacy.html">Privacy</a></footer>
+
+<footer>
+  <p class="note">Thanks for reading! Try it at hw.chausima.com</p>
+  <p>Homework Launchpad is a student project. Open-source parts are under the GNU GPL. <a href="https://civilinitiatives.org/privacy.html">Privacy</a></p>
+</footer>
+</div>
+
+<script>
+(function(){
+  var root = document.documentElement, reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function go(){
+    root.classList.remove("drawn","launch"); void root.offsetWidth;
+    root.classList.add("drawn");
+    if(reduce) return;
+    setTimeout(function(){ root.classList.add("launch"); }, 1900);
+  }
+  addEventListener("load", function(){ setTimeout(go, 250); });
+  document.getElementById("again").addEventListener("click", go);
+  if(reduce) document.getElementById("again").hidden = true;
+})();
+</script>
 </body>
 </html>
