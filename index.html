@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Homework Launchpad - Overview</title>
+<meta name="description" content="An overview of the Homework Launchpad: a free set of homework tools, learning games and apps built by a student, much of it open source.">
+<link rel="icon" type="image/png" href="/favicon.png">
+<meta name="theme-color" content="#4f46e5">
+<style>
+:root{--bg:#f6f7fb;--card:#fff;--ink:#141a2e;--soft:#5b6383;--rule:#dfe3ef;--a1:#4f46e5;--a2:#7c3aed;--ok:#15803d;--okbg:#dcfce7;--tag:#eef0fb;
+  --font:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color-scheme:light}
+@media (prefers-color-scheme:dark){:root{--bg:#0d1020;--card:#161a2e;--ink:#e8eaf6;--soft:#9aa1c0;--rule:#272c47;--a1:#818cf8;--a2:#a78bfa;--ok:#4ade80;--okbg:#14301f;--tag:#20253f;color-scheme:dark}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 var(--font)}
+a{color:var(--a1)}
+.wrap{max-width:1040px;margin:0 auto;padding:0 16px}
+header.hero{background:linear-gradient(135deg,#4f46e5,#7c3aed 60%,#a855f7);color:#fff;padding:56px 0 64px}
+.hero .logo{width:56px;height:56px;border-radius:16px;background:rgba(255,255,255,.18);display:grid;place-items:center;font-size:1.8rem;margin-bottom:14px}
+.hero h1{margin:0 0 10px;font-size:clamp(1.9rem,5vw,2.8rem);line-height:1.15;letter-spacing:-.01em}
+.hero p{margin:0;max-width:640px;font-size:1.1rem;opacity:.95}
+.stats{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.stats span{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:6px 14px;font-size:.9rem}
+.cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+.btn{display:inline-block;padding:10px 18px;border-radius:12px;background:#fff;color:#3730a3;font-weight:650;text-decoration:none}
+.btn.ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.6)}
+section{padding:44px 0 8px}
+h2{font-size:1.5rem;margin:0 0 6px}
+.lead{color:var(--soft);margin:0 0 20px;max-width:700px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
+.card{background:var(--card);border:1px solid var(--rule);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:8px}
+.card .top{display:flex;align-items:center;gap:10px}
+.card .ic{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;font-size:1.3rem;background:var(--tag);flex:none}
+.card h3{margin:0;font-size:1.08rem}
+.card p{margin:0;color:var(--soft);font-size:.95rem;flex:1}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{font-size:.74rem;font-weight:650;padding:2px 9px;border-radius:999px;background:var(--tag);color:var(--soft)}
+.tag.os{background:var(--okbg);color:var(--ok)}
+.links{display:flex;flex-wrap:wrap;gap:12px;font-size:.92rem;font-weight:600}
+.links a{text-decoration:none}
+.links a:hover{text-decoration:underline}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+.list{margin:0;padding:0;list-style:none;display:grid;gap:10px}
+.list li{background:var(--card);border:1px solid var(--rule);border-radius:14px;padding:12px 14px}
+.list b{display:block}
+.list span{color:var(--soft);font-size:.93rem}
+.short{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
+.short a{display:block;background:var(--card);border:1px solid var(--rule);border-radius:14px;padding:12px 14px;text-decoration:none;color:var(--ink)}
+.short code{font-family:ui-monospace,Menlo,Consolas,monospace;color:var(--a1);font-weight:650}
+.short small{display:block;color:var(--soft)}
+footer{padding:40px 0 48px;color:var(--soft);font-size:.88rem}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <div class="logo" aria-hidden="true">🚀</div>
+    <h1>Homework Launchpad</h1>
+    <p>A free set of homework tools, learning games and apps for secondary-school pupils, designed, built and run by a student. This page is a quick overview for teachers and testers.</p>
+    <div class="stats"><span>15+ websites</span><span>Office-style Suite with 10 apps</span><span>Apps for Android, Windows, Mac, Linux and iPhone</span><span>Open-source games</span></div>
+    <div class="cta"><a class="btn" href="https://civilinitiatives.org/">Open the Launchpad</a><a class="btn ghost" href="https://github.com/silocell">Code on GitHub</a></div>
+  </div>
+</header>
+
+<main class="wrap">
+<section id="parts">
+  <h2>What's inside</h2>
+  <p class="lead">Pupils sign in with their school account. Each part can be switched on or off by the Launchpad's admins, for everyone or one person.</p>
+  <div class="grid">
+    <article class="card"><div class="top"><span class="ic">📋</span><h3>Dashboard</h3></div>
+      <p>The home page: homework list and reminders, notes, the Explainer (explains a topic in simple steps), a Wikipedia search and a safe pupil chat.</p>
+      <div class="tags"><span class="tag">Sign-in</span></div>
+      <div class="links"><a href="https://civilinitiatives.org/">Open</a><a href="https://github.com/silocell/heh-homework">Code</a></div></article>
+    <article class="card"><div class="top"><span class="ic">📝</span><h3>Launchpad Suite</h3></div>
+      <p>Ten Office-style apps in the browser: Write, Grid, Present, Notebook, PDF, Draw, Forms, Design, Vids and Files - with ribbons, File menu and Word/Excel/PowerPoint export.</p>
+      <div class="tags"><span class="tag">Sign-in</span></div>
+      <div class="links"><a href="https://suite.civilinitiatives.org/">Open</a><a href="https://github.com/silocell/heh-suite">Code</a></div></article>
+    <article class="card"><div class="top"><span class="ic">✦</span><h3>Launchpad AI</h3></div>
+      <p>An AI chat with a daily free quota. A fast model picks the best free AI for each message; Claude is available for a few pence. Personal details are removed before anything is sent.</p>
+      <div class="tags"><span class="tag">Sign-in</span><span class="tag">Safety-checked</span></div>
+      <div class="links"><a href="https://ai.civilinitiatives.org/">Open</a><a href="https://github.com/silocell/heh-ai">Code</a></div></article>
+    <article class="card"><div class="top"><span class="ic">🎮</span><h3>Game Maker</h3></div>
+      <p>Describe a game in words and get a playable one. Games are checked before they are shared, and run in a locked-down sandbox.</p>
+      <div class="tags"><span class="tag">Sign-in</span></div>
+      <div class="links"><a href="https://sandbox.civilinitiatives.org/">Open</a><a href="https://github.com/silocell/heh-sandbox">Code</a></div></article>
+    <article class="card"><div class="top"><span class="ic">🚀</span><h3>Level Up</h3></div>
+      <p>Maths and other subjects as levels to climb, with practice questions written to the Year 7 curriculum and points to spend.</p>
+      <div class="tags"><span class="tag os">Open source</span></div>
+      <div class="links"><a href="https://learn.civilinitiatives.org/levelup.html">Open</a><a href="https://github.com/silocell/heh-launchpad-learn">Code</a></div></article>
+    <article class="card"><div class="top"><span class="ic">🧠</span><h3>Learning games</h3></div>
+      <p>Times tables, flashcards, geography, history and more - quick games that build up the basics.</p>
+      <div class="tags"><span class="tag os">Open source</span></div>
+      <div class="links"><a href="https://learn.civilinitiatives.org/">Open</a><a href="https://github.com/silocell/heh-launchpad-learn">Code</a></div></article>
+    <article class="card"><div class="top"><span class="ic">🐱</span><h3>Scratch games</h3></div>
+      <p>Games made in Scratch, playable in the browser - and a way to see how Scratch projects work.</p>
+      <div class="tags"><span class="tag os">Open source</span></div>
+      <div class="links"><a href="https://games.civilinitiatives.org/">Open</a><a href="https://github.com/silocell/heh-launchpad-scratch">Code</a></div></article>
+    <article class="card"><div class="top"><span class="ic">👾</span><h3>Arcade</h3></div>
+      <p>Classic arcade-style games for break time.</p>
+      <div class="tags"><span class="tag os">Open source</span></div>
+      <div class="links"><a href="https://arcade.civilinitiatives.org/">Open</a><a href="https://github.com/silocell/heh-arcade">Code</a></div></article>
+    <article class="card"><div class="top"><span class="ic">✏️</span><h3>Doodles</h3></div>
+      <p>A simple drawing space.</p>
+      <div class="tags"><span class="tag os">Open source</span></div>
+      <div class="links"><a href="https://doodles.civilinitiatives.org/">Open</a><a href="https://github.com/silocell/heh-doodles">Code</a></div></article>
+    <article class="card"><div class="top"><span class="ic">🏃</span><h3>Gate Run</h3></div>
+      <p>A 3D runner game in the browser.</p>
+      <div class="tags"><span class="tag os">Open source</span></div>
+      <div class="links"><a href="https://gaterun.civilinitiatives.org/">Open</a><a href="https://github.com/silocell/heh-launchpad-game">Code</a></div></article>
+  </div>
+</section>
+
+<section id="safety">
+  <h2>Keeping pupils safe</h2>
+  <p class="lead">Built for school from the start. The checks run on the Launchpad's own server, not just in the browser.</p>
+  <div class="two">
+    <ul class="list">
+      <li><b>Safety check on every message</b><span>Chat messages and AI questions go through a safety model with a written school policy. Threats, sexual content and self-harm are blocked; anyone who seems at risk is pointed to Childline.</span></li>
+      <li><b>Personal information removed</b><span>Names, emails, phone numbers, postcodes, addresses and passwords are taken out before anything reaches an AI or is saved.</span></li>
+      <li><b>Speed limits</b><span>Each person can only send a few messages a minute, so nobody can flood the chat or run up AI costs.</span></li>
+    </ul>
+    <ul class="list">
+      <li><b>Admin switches</b><span>The Shop, Game Maker, AI chat and more can be turned off for everyone or one pupil, instantly.</span></li>
+      <li><b>Maintenance lock</b><span>One switch closes every Launchpad site at once, while the owner keeps access to fix things.</span></li>
+      <li><b>School accounts only</b><span>Sign-up is limited to the school's email domain, and photos need the owner's approval.</span></li>
+    </ul>
+  </div>
+</section>
+
+<section id="built">
+  <h2>How it's built</h2>
+  <p class="lead">Mostly free and open technology, run on free tiers.</p>
+  <ul class="list">
+    <li><b>Websites</b><span>Plain HTML, CSS and JavaScript, hosted on GitHub Pages - one repository per site.</span></li>
+    <li><b>Server</b><span>A self-hosted Supabase (Postgres database, sign-in, storage and Deno edge functions) on an Oracle Cloud free-tier server in London.</span></li>
+    <li><b>AI</b><span>Several free AI services (Groq, Cloudflare, OpenRouter, Cohere) with automatic fall-back, plus Claude, all through the Launchpad's server so keys are never in the browser.</span></li>
+    <li><b>Apps</b><span>Lightweight Android, Windows, Mac, Linux and iPhone apps that open the Launchpad, built automatically on GitHub Actions.</span></li>
+  </ul>
+</section>
+
+<section id="links">
+  <h2>Short links</h2>
+  <p class="lead">Easy to type in class.</p>
+  <div class="short">
+    <a href="https://hw.chausima.com"><code>hw.chausima.com</code><small>The Launchpad</small></a>
+    <a href="https://m.chausima.com"><code>m.chausima.com</code><small>Level Up (maths)</small></a>
+    <a href="https://g.chausima.com"><code>g.chausima.com</code><small>Scratch games</small></a>
+    <a href="/ai"><code>chausima.com/ai</code><small>Launchpad AI</small></a>
+    <a href="/suite"><code>chausima.com/suite</code><small>Launchpad Suite</small></a>
+  </div>
+</section>
+</main>
+<footer class="wrap">Homework Launchpad · a student project · open-source parts are under the GNU GPL · <a href="https://civilinitiatives.org/privacy.html">Privacy</a></footer>
+</body>
+</html>
