@@ -180,6 +180,9 @@ footer .note{font-size:1.4rem;color:var(--ink);margin-bottom:8px}
 .tow .flame2{fill:var(--hl);stroke:var(--margin);stroke-width:2;animation:flicker .1s steps(2) infinite alternate;transform-origin:29px 66px}
 @media (max-width:520px){.totop{bottom:76px;right:12px}}
 
+.pencil{font-family:var(--hand);font-size:1.15rem;color:var(--soft);white-space:nowrap;padding:0 8px;border:1.5px dashed var(--soft);border-radius:8px 3px 9px 4px;transform:rotate(-2deg);display:inline-block}
+#more .entry h3{color:var(--soft)}
+
 @media (max-width:900px){
   :root{--m:14px}
   body{background-size:96px 96px,96px 96px,24px 24px,24px 24px}
@@ -211,10 +214,10 @@ footer .note{font-size:1.4rem;color:var(--ink);margin-bottom:8px}
       <dt>Made by</dt><dd>a student, from scratch</dd>
     </dl>
     <h1>Chausima</h1>
-    <p class="lede">A notebook of projects designed, built and run by a student. The biggest is the Homework Launchpad: homework tools, a ten-app Office-style Suite, an AI helper and a shelf of learning games, free for pupils to use. Go on, draw on the page.</p>
+    <p class="lede">A notebook of projects designed, built and run by a student, from the Homework Launchpad to a Minecraft launcher. The biggest is the Homework Launchpad: homework tools, a ten-app Office-style Suite, an AI helper and a shelf of learning games, free for pupils to use. Go on, draw on the page.</p>
     <div class="actions">
       <a class="tab go" href="https://hw.chausima.com">Open the Launchpad</a>
-      <a class="tab code" href="https://github.com/silocell">Read the code</a>
+      <a class="tab code" href="https://code.chausima.com">Read the code</a>
     </div>
     <form class="quiz" id="quiz" autocomplete="off">
       <p class="note qhead">Try a Level Up question</p>
@@ -263,37 +266,47 @@ footer .note{font-size:1.4rem;color:var(--ink);margin-bottom:8px}
   <div class="legend"><span><span class="os">open source</span> code anyone can read and reuse (GNU GPL)</span><span class="login">🔒 needs a school sign-in</span></div>
   <ol class="contents">
     <li><div class="entry"><span class="ic">📋</span><h3>Dashboard</h3><span class="dots"></span><a class="short" href="https://hw.chausima.com">hw.chausima.com</a></div>
-      <div class="desc"><span></span><div><p>Homework list and reminders, notes, the Explainer that breaks any topic into simple steps, a Wikipedia search and a moderated pupil chat.</p><div class="meta"><span class="login">🔒 sign-in</span><a href="https://github.com/silocell/heh-homework">Code</a></div></div></div></li>
+      <div class="desc"><span></span><div><p>Homework list and reminders, notes, the Explainer that breaks any topic into simple steps, a Wikipedia search and a moderated pupil chat.</p><div class="meta"><span class="login">🔒 sign-in</span><a href="https://code.chausima.com/#/heh-homework">Code</a></div></div></div></li>
     <li><div class="entry"><span class="ic">📝</span><h3>Launchpad Suite</h3><span class="dots"></span><a class="short" href="https://s.chausima.com">s.chausima.com</a></div>
-      <div class="desc"><span></span><div><p>Ten Office-style apps in the browser: Write, Grid, Present, Notebook, PDF, Draw, Forms, Design, Vids and Files, with ribbons, a File menu and Word, Excel and PowerPoint export.</p><div class="meta"><span class="login">🔒 sign-in</span><a href="https://github.com/silocell/heh-suite">Code</a></div></div></div></li>
+      <div class="desc"><span></span><div><p>Ten Office-style apps in the browser: Write, Grid, Present, Notebook, PDF, Draw, Forms, Design, Vids and Files, with ribbons, a File menu and Word, Excel and PowerPoint export.</p><div class="meta"><a href="https://try.chausima.com">Try it without signing in (try.chausima.com)</a><span class="login">🔒 sign in to keep your work</span><a href="https://code.chausima.com/#/heh-suite">Code</a></div></div></div></li>
     <li><div class="entry"><span class="ic">✦</span><h3>Launchpad AI</h3><span class="dots"></span><a class="short" href="https://ai.chausima.com">ai.chausima.com</a></div>
-      <div class="desc"><span></span><div><p>An AI chat with free messages every day. A fast model picks the best free AI for each question; Claude is there for a few pence. Personal details are taken out before anything is sent.</p><div class="meta"><span class="login">🔒 sign-in</span><a href="https://github.com/silocell/heh-ai">Code</a></div></div></div></li>
+      <div class="desc"><span></span><div><p>An AI chat with free messages every day. A fast model picks the best free AI for each question; Claude is there for a few pence. Personal details are taken out before anything is sent.</p><div class="meta"><span class="login">🔒 sign-in</span><a href="https://code.chausima.com/#/heh-ai">Code</a></div></div></div></li>
     <li><div class="entry"><span class="ic">🎮</span><h3>Game Maker</h3><span class="dots"></span><a class="short" href="https://gm.chausima.com">gm.chausima.com</a></div>
-      <div class="desc"><span></span><div><p>Describe a game in words and get one you can play. Every game is checked before it is shared and runs in a locked-down sandbox.</p><div class="meta"><span class="login">🔒 sign-in</span><a href="https://github.com/silocell/heh-sandbox">Code</a></div></div></div></li>
+      <div class="desc"><span></span><div><p>Describe a game in words and get one you can play. Every game is checked before it is shared and runs in a locked-down sandbox.</p><div class="meta"><span class="login">🔒 sign-in</span><a href="https://code.chausima.com/#/heh-sandbox">Code</a></div></div></div></li>
     <li><div class="entry"><span class="ic">🚀</span><h3>Level Up</h3><span class="dots"></span><a class="short" href="https://m.chausima.com">m.chausima.com</a></div>
-      <div class="desc"><span></span><div><p>Maths and other subjects as levels to climb, with practice questions that follow the Year 7 curriculum.</p><div class="meta"><span class="os">open source</span><a href="https://github.com/silocell/heh-launchpad-learn">Code</a></div></div></div></li>
+      <div class="desc"><span></span><div><p>Maths and other subjects as levels to climb, with practice questions that follow the Year 7 curriculum.</p><div class="meta"><a href="https://lu.chausima.com">Play the demo (lu.chausima.com)</a><span class="os">open source</span><a href="https://code.chausima.com/#/heh-launchpad-learn">Code</a></div></div></div></li>
     <li><div class="entry"><span class="ic">🧠</span><h3>Learning games</h3><span class="dots"></span><a class="short" href="https://l.chausima.com">l.chausima.com</a></div>
-      <div class="desc"><span></span><div><p>Times tables, flashcards, geography, history and more: quick games that make the basics stick.</p><div class="meta"><span class="os">open source</span><a href="https://github.com/silocell/heh-launchpad-learn">Code</a></div></div></div></li>
+      <div class="desc"><span></span><div><p>Times tables, flashcards, geography, history and more: quick games that make the basics stick.</p><div class="meta"><span class="os">open source</span><a href="https://code.chausima.com/#/heh-launchpad-learn">Code</a></div></div></div></li>
     <li><div class="entry"><span class="ic">🐱</span><h3>Scratch games</h3><span class="dots"></span><a class="short" href="https://g.chausima.com">g.chausima.com</a></div>
-      <div class="desc"><span></span><div><p>Games made in Scratch that play right in the browser, and a peek at how Scratch projects work.</p><div class="meta"><span class="os">open source</span><a href="https://github.com/silocell/heh-launchpad-scratch">Code</a></div></div></div></li>
+      <div class="desc"><span></span><div><p>Games made in Scratch that play right in the browser, and a peek at how Scratch projects work. Also at scratch.chausima.com.</p><div class="meta"><span class="os">open source</span><a href="https://code.chausima.com/#/heh-launchpad-scratch">Code</a></div></div></div></li>
     <li><div class="entry"><span class="ic">👾</span><h3>Arcade</h3><span class="dots"></span><a class="short" href="https://ar.chausima.com">ar.chausima.com</a></div>
-      <div class="desc"><span></span><div><p>Classic arcade-style games for break time.</p><div class="meta"><span class="os">open source</span><a href="https://github.com/silocell/heh-arcade">Code</a></div></div></div></li>
+      <div class="desc"><span></span><div><p>Classic arcade-style games for break time.</p><div class="meta"><span class="os">open source</span><a href="https://code.chausima.com/#/heh-arcade">Code</a></div></div></div></li>
     <li><div class="entry"><span class="ic">✏️</span><h3>Doodles</h3><span class="dots"></span><a class="short" href="https://d.chausima.com">d.chausima.com</a></div>
-      <div class="desc"><span></span><div><p>A simple space to draw and sketch.</p><div class="meta"><span class="os">open source</span><a href="https://github.com/silocell/heh-doodles">Code</a></div></div></div></li>
+      <div class="desc"><span></span><div><p>A simple space to draw and sketch.</p><div class="meta"><span class="os">open source</span><a href="https://code.chausima.com/#/heh-doodles">Code</a></div></div></div></li>
     <li><div class="entry"><span class="ic">🏃</span><h3>Gate Run</h3><span class="dots"></span><a class="short" href="https://r.chausima.com">r.chausima.com</a></div>
-      <div class="desc"><span></span><div><p>A 3D runner game in the browser.</p><div class="meta"><span class="os">open source</span><a href="https://github.com/silocell/heh-launchpad-game">Code</a></div></div></div></li>
+      <div class="desc"><span></span><div><p>A 3D runner game in the browser.</p><div class="meta"><span class="os">open source</span><a href="https://code.chausima.com/#/heh-launchpad-game">Code</a></div></div></div></li>
     <li><div class="entry"><span class="ic">🎲</span><h3>Play</h3><span class="dots"></span><a class="short" href="https://p.chausima.com">p.chausima.com</a></div>
-      <div class="desc"><span></span><div><p>Every game on the Launchpad in one place, sorted into learning games and just-for-fun.</p><div class="meta"><a href="https://github.com/silocell/heh-play">Code</a></div></div></div></li>
+      <div class="desc"><span></span><div><p>Every game on the Launchpad in one place, sorted into learning games and just-for-fun.</p><div class="meta"><a href="https://code.chausima.com/#/heh-play">Code</a></div></div></div></li>
     <li><div class="entry"><span class="ic">🗂</span><h3>Files</h3><span class="dots"></span><a class="short" href="https://f.chausima.com">f.chausima.com</a></div>
-      <div class="desc"><span></span><div><p>Everything made in the Suite, in one place to find, sort and share.</p><div class="meta"><span class="login">🔒 sign-in</span><a href="https://github.com/silocell/heh-files">Code</a></div></div></div></li>
+      <div class="desc"><span></span><div><p>Everything made in the Suite, in one place to find, sort and share.</p><div class="meta"><span class="login">🔒 sign-in</span><a href="https://code.chausima.com/#/heh-files">Code</a></div></div></div></li>
     <li><div class="entry"><span class="ic">🎬</span><h3>Videos</h3><span class="dots"></span><a class="short" href="https://v.chausima.com">v.chausima.com</a></div>
-      <div class="desc"><span></span><div><p>Video and Shorts sharing for pupils' projects, with uploads checked before they go public.</p><div class="meta"><span class="login">🔒 sign-in</span><a href="https://github.com/silocell/heh-hosting">Code</a></div></div></div></li>
+      <div class="desc"><span></span><div><p>Video and Shorts sharing for pupils' projects, with uploads checked before they go public.</p><div class="meta"><span class="login">🔒 sign-in</span><a href="https://code.chausima.com/#/heh-hosting">Code</a></div></div></div></li>
     <li><div class="entry"><span class="ic">🛍</span><h3>Shop</h3><span class="dots"></span><a class="short" href="https://sh.chausima.com">sh.chausima.com</a></div>
-      <div class="desc"><span></span><div><p>Spend the points earned in Level Up on avatars and other rewards.</p><div class="meta"><span class="login">🔒 sign-in</span><a href="https://github.com/silocell/heh-shop">Code</a></div></div></div></li>
+      <div class="desc"><span></span><div><p>Spend the points earned in Level Up on avatars and other rewards.</p><div class="meta"><span class="login">🔒 sign-in</span><a href="https://code.chausima.com/#/heh-shop">Code</a></div></div></div></li>
     <li><div class="entry"><span class="ic">🧪</span><h3>Lab</h3><span class="dots"></span><a class="short" href="https://lab.chausima.com">lab.chausima.com</a></div>
-      <div class="desc"><span></span><div><p>Where new ideas are tried out before they reach the main Launchpad.</p><div class="meta"><a href="https://github.com/silocell/heh-launchpad-lab">Code</a></div></div></div></li>
+      <div class="desc"><span></span><div><p>Where new ideas are tried out before they reach the main Launchpad.</p><div class="meta"><a href="https://code.chausima.com/#/heh-launchpad-lab">Code</a></div></div></div></li>
     <li><div class="entry"><span class="ic">🛠</span><h3>Developer page</h3><span class="dots"></span><a class="short" href="https://dev.chausima.com">dev.chausima.com</a></div>
-      <div class="desc"><span></span><div><p>How the Launchpad is put together, for anyone curious about the code.</p><div class="meta"><a href="https://github.com/silocell/silocell.github.io">Code</a></div></div></div></li>
+      <div class="desc"><span></span><div><p>How the Launchpad is put together, for anyone curious about the code.</p><div class="meta"><a href="https://code.chausima.com/#/silocell.github.io">Code</a></div></div></div></li>
+  </ol>
+</section>
+
+<section id="more" class="hasnote">
+  <span class="note side">also in this notebook</span>
+  <h2>Other projects</h2>
+  <p class="intro">Things being built alongside the Launchpad. Pages written in pencil are still in progress.</p>
+  <ol class="contents">
+    <li><div class="entry"><span class="ic">⛏️</span><h3>OpenMCL</h3><span class="dots"></span><span class="pencil">in progress</span></div>
+      <div class="desc"><span></span><div><p>A free Minecraft: Java Edition launcher for Windows, Mac and Linux. Every setup gets its own worlds, mods and Java, it installs Fabric, Quilt, NeoForge and Forge for you, and searches Modrinth and CurseForge in one place. Version 0.1, so expect rough edges.</p><div class="meta"><span class="os">open source</span><a href="https://silocell.github.io/OpenMCL-Launcher/">Website</a><a href="https://code.chausima.com/#/OpenMCL-Launcher">Code</a></div></div></div></li>
   </ol>
 </section>
 
