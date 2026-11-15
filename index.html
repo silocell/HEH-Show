@@ -43,9 +43,9 @@ a{color:var(--ink)}
 
 /* ---------- hero ---------- */
 .hero{min-height:min(92vh,860px);display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);align-items:center;gap:24px;padding-top:56px;padding-bottom:56px}
-.cover{display:inline-grid;grid-template-columns:auto 1fr;gap:2px 14px;border:2px solid var(--ink);border-radius:6px;padding:12px 16px;background:var(--card);font-size:.95rem;margin-bottom:34px;transform:rotate(-1deg)}
+.cover{display:inline-grid;max-width:100%;box-sizing:border-box;grid-template-columns:auto minmax(0,1fr);gap:2px 14px;border:2px solid var(--ink);border-radius:6px;padding:12px 16px;background:var(--card);font-size:.95rem;margin-bottom:34px;transform:rotate(-1deg)}
 .cover dt{color:var(--soft)}
-.cover dd{margin:0;font-family:var(--hand);color:var(--ink);font-size:1.12rem;border-bottom:1px dashed var(--line)}
+.cover dd{margin:0;overflow-wrap:anywhere;min-width:0;font-family:var(--hand);color:var(--ink);font-size:1.12rem;border-bottom:1px dashed var(--line)}
 h1{font-family:var(--display);font-weight:800;color:var(--ink);font-size:clamp(3.1rem,9vw,7.4rem);line-height:.9;letter-spacing:-.035em;margin:0 0 22px;font-variation-settings:"opsz" 96}
 h1 .row{display:block}
 h1 .row+.row{padding-left:.55em}
@@ -136,6 +136,7 @@ footer .note{font-size:1.4rem;color:var(--ink);margin-bottom:8px}
 /* ---------- live question ---------- */
 .quiz{position:relative;display:grid;grid-template-columns:auto 5.5rem auto auto;align-items:center;gap:8px 12px;margin-top:34px;padding:14px 18px;background:var(--card);border:2px dashed var(--line);border-radius:12px;max-width:31rem;transform:rotate(.6deg)}
 .qhead{grid-column:1/-1;margin:0;color:var(--soft)}
+@media (max-width:400px){.quiz{grid-template-columns:auto minmax(3rem,1fr) auto;padding:12px;gap:8px;max-width:100%;box-sizing:border-box}.qmark{position:absolute;right:6px;top:4px}}
 .qq{font-family:var(--display);font-weight:800;font-size:1.9rem;color:var(--ink)}
 .quiz input{font:700 1.6rem var(--hand);color:var(--ink);width:100%;border:0;border-bottom:2px solid var(--ink);background:transparent;padding:0 4px;text-align:center}
 .quiz input:focus{outline:none;border-bottom-color:var(--margin)}
@@ -187,7 +188,7 @@ footer .note{font-size:1.4rem;color:var(--ink);margin-bottom:8px}
   :root{--m:14px}
   body{background-size:96px 96px,96px 96px,24px 24px,24px 24px}
   .page{padding-left:34px;padding-right:18px}
-  .hero{grid-template-columns:1fr;min-height:0;padding-top:28px}
+  .hero{grid-template-columns:minmax(0,1fr);min-height:0;padding-top:28px}
   .rocketbox{height:420px;order:-1;margin:-10px 0 -30px}
   .hasnote>.note.side{position:static;display:block;width:auto;text-align:left;transform:none;margin-bottom:6px}
   .entry{grid-template-columns:1.8rem minmax(0,1fr) auto}
@@ -220,7 +221,7 @@ footer .note{font-size:1.4rem;color:var(--ink);margin-bottom:8px}
       <a class="tab code" href="https://code.chausima.com">Read the code</a>
     </div>
     <form class="quiz" id="quiz" autocomplete="off">
-      <p class="note qhead">Try a Level Up question</p>
+      <p class="note qhead">Try a Brainstorm Maths question</p>
       <label for="qa" class="qq" id="qq">7 × 8 =</label>
       <input id="qa" inputmode="numeric" pattern="[0-9]*" maxlength="4" aria-describedby="qmsg">
       <button type="submit" class="tab go qbtn">Check</button>
