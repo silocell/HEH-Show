@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chausima Mail app</title>
+<meta name="description" content="Get the Chausima Mail app for Android, or use Chausima Mail in your browser.">
+<link rel="icon" type="image/png" href="icon.png">
+<meta name="theme-color" content="#c8312b">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Atkinson+Hyperlegible:wght@400;700&family=Kalam:wght@400&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#fdfdf8;--grid:#d5e4f5;--margin:#e2474b;--ink:#1f3a93;--graphite:#262a33;--soft:#5b6170;--card:#fff;--line:#c9d6e8;--red:#c8312b;color-scheme:light}
+@media (prefers-color-scheme:dark){:root{--paper:#1d2a24;--grid:rgba(255,255,255,.05);--margin:#f07a7d;--ink:#f3f1e4;--graphite:#ecebe2;--soft:#aab4ad;--card:#24332c;--line:rgba(255,255,255,.14);--red:#ff6a5c;color-scheme:dark}}
+*{box-sizing:border-box}
+body{margin:0;color:var(--graphite);font:17px/1.6 "Atkinson Hyperlegible",system-ui,sans-serif;background:var(--paper);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:24px 24px}
+main{max-width:680px;margin:0 auto;padding:48px 16px 64px}
+a{color:var(--ink)}
+.back{font-size:15px}
+.head{display:flex;gap:18px;align-items:center;margin:24px 0 8px}
+.head img{width:88px;height:88px;border-radius:22px;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.12)}
+h1{font-family:"Bricolage Grotesque",system-ui,sans-serif;font-weight:800;color:var(--ink);font-size:clamp(2.2rem,8vw,3.4rem);line-height:1;margin:0;letter-spacing:-.02em}
+.note{font-family:"Kalam",cursive;color:var(--margin);font-size:1.1rem;margin:0}
+.card{background:var(--card);border:2px solid var(--ink);border-radius:6px;padding:20px;margin:24px 0}
+h2{font-family:"Bricolage Grotesque",system-ui,sans-serif;font-size:1.4rem;margin:0 0 6px;color:var(--ink)}
+.go{display:inline-block;margin:10px 0 4px;padding:12px 20px;border-radius:4px 4px 10px 4px;background:var(--red);color:#fff;text-decoration:none;font-weight:700}
+.go.alt{background:transparent;color:var(--ink);border:2px solid var(--ink)}
+ol{padding-left:22px;margin:8px 0 0}
+small{color:var(--soft)}
+</style>
+</head>
+<body>
+<main>
+  <a class="back" href="/">← Chausima</a>
+  <div class="head"><img src="icon.png" alt=""><div><p class="note">email for chausima.com</p><h1>Chausima Mail</h1></div></div>
+
+  <section class="card">
+    <h2>Android</h2>
+    <p>The app opens your Chausima Mail in its own window, with its own icon.</p>
+    <a class="go" href="Chausima-Mail.apk" download>Download for Android</a> <small>version 1.0.1 · 31 KB</small>
+    <ol>
+      <li>Open the downloaded file.</li>
+      <li>If your phone asks, allow your browser to install apps.</li>
+      <li>Open Chausima Mail and sign in with your chausima.com address.</li>
+    </ol>
+  </section>
+
+  <section class="card">
+    <h2>Any phone or computer</h2>
+    <p>Chausima Mail works in the browser too. In Chrome or Edge, choose <b>Install app</b> from the menu; on an iPhone, tap Share and then <b>Add to Home Screen</b>.</p>
+    <a class="go alt" href="https://mail.chausima.com/">Open Chausima Mail</a>
+  </section>
+</main>
+</body>
+</html>
