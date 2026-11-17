@@ -1,0 +1,68 @@
+/* ===== CTube for YouTube: Chausima look ===== */
+html.ctube-on:not([dark]) {
+  --yt-spec-base-background: #f6f8fc;
+  --yt-spec-raised-background: #ffffff;
+  --yt-spec-menu-background: #ffffff;
+  --yt-spec-general-background-a: #f6f8fc;
+  --yt-spec-badge-chip-background: #e9eef6;
+  --yt-spec-10-percent-layer: #e3e8f1;
+  --yt-spec-text-primary: #17202a;
+  --yt-spec-text-secondary: #5b6673;
+  --yt-spec-call-to-action: #1f3a93;
+  --yt-spec-themed-blue: #1f3a93;
+  --ctube-red: #c8312b; --ctube-blue: #1f3a93;
+}
+html.ctube-on[dark] {
+  --yt-spec-base-background: #0f1317;
+  --yt-spec-raised-background: #161b21;
+  --yt-spec-menu-background: #1b2026;
+  --yt-spec-general-background-a: #0f1317;
+  --yt-spec-badge-chip-background: #1d242c;
+  --yt-spec-10-percent-layer: #222a32;
+  --yt-spec-text-primary: #e7ebee;
+  --yt-spec-text-secondary: #9aa5b1;
+  --yt-spec-call-to-action: #9fb4ff;
+  --yt-spec-themed-blue: #9fb4ff;
+  --ctube-red: #ff6a5c; --ctube-blue: #7f9cff;
+}
+html.ctube-on body, html.ctube-on ytd-app {
+  font-family: "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif !important;
+}
+/* airmail stripe along the top of the page */
+html.ctube-on #masthead-container::before {
+  content: ""; position: absolute; left: 0; right: 0; top: 0; height: 4px; z-index: 3000; pointer-events: none;
+  background: repeating-linear-gradient(135deg, var(--ctube-red) 0 12px, transparent 12px 18px, var(--ctube-blue) 18px 30px, transparent 30px 36px);
+}
+/* softer, rounder cards and buttons */
+html.ctube-on ytd-thumbnail, html.ctube-on ytd-thumbnail img, html.ctube-on yt-thumbnail-view-model,
+html.ctube-on yt-thumbnail-view-model img, html.ctube-on ytd-playlist-thumbnail { border-radius: 16px !important; }
+html.ctube-on yt-chip-cloud-chip-renderer, html.ctube-on #chip-container { border-radius: 999px !important; }
+html.ctube-on #search-form, html.ctube-on ytd-searchbox #container { border-radius: 999px !important; }
+html.ctube-on ytd-rich-item-renderer #details, html.ctube-on ytd-compact-video-renderer { transition: transform .12s ease; }
+html.ctube-on ytd-rich-item-renderer:hover #details { transform: translateY(-1px); }
+html.ctube-on #movie_player, html.ctube-on ytd-player { border-radius: 18px !important; overflow: hidden; }
+html.ctube-on .ctube-apps { display: inline-flex; align-items: center; margin-right: 4px; }
+
+/* ===== focus mode ===== */
+/* no Shorts */
+html.ctube-noshorts ytd-rich-shelf-renderer[is-shorts],
+html.ctube-noshorts ytd-reel-shelf-renderer,
+html.ctube-noshorts ytd-rich-section-renderer:has(ytd-rich-shelf-renderer[is-shorts]),
+html.ctube-noshorts ytd-rich-item-renderer:has(a[href^="/shorts/"]),
+html.ctube-noshorts ytd-video-renderer:has(a[href^="/shorts/"]),
+html.ctube-noshorts ytd-guide-entry-renderer:has(a[title="Shorts"]),
+html.ctube-noshorts ytd-mini-guide-entry-renderer[aria-label="Shorts"],
+html.ctube-noshorts yt-tab-shape[tab-title="Shorts"],
+html.ctube-noshorts grid-shelf-view-model:has(a[href^="/shorts/"]) { display: none !important; }
+/* no comments */
+html.ctube-nocomments ytd-comments, html.ctube-nocomments #comments { display: none !important; }
+/* no recommendations: empty home feed, nothing next to or after a video */
+html.ctube-norecs ytd-browse[page-subtype="home"] ytd-rich-grid-renderer,
+html.ctube-norecs ytd-browse[page-subtype="home"] #chips-wrapper,
+html.ctube-norecs #related, html.ctube-norecs ytd-watch-next-secondary-results-renderer,
+html.ctube-norecs .ytp-endscreen-content, html.ctube-norecs .ytp-ce-element,
+html.ctube-norecs .ytp-autonav-endscreen-countdown-overlay { display: none !important; }
+html.ctube-norecs ytd-browse[page-subtype="home"] #primary::before {
+  content: "Focus mode is on. Search for the video you need."; display: block; margin: 80px auto; text-align: center;
+  font-size: 18px; color: var(--yt-spec-text-secondary);
+}

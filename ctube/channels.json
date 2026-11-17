@@ -1,0 +1,21 @@
+[
+  {"id":"UCsXVk37bltHxD1rDPwtNM8Q","name":"Kurzgesagt","subject":"Science"},
+  {"id":"UCHnyfMqiRRG1u-2MsSQLbXA","name":"Veritasium","subject":"Science"},
+  {"id":"UCZYTClx2T1of7BRZ86-8fow","name":"SciShow","subject":"Science"},
+  {"id":"UCRFIPG2u1DxKLNuE3y2SjHA","name":"SciShow Kids","subject":"Science"},
+  {"id":"UCEIwxahdLz7bap-VDs9h35A","name":"Steve Mould","subject":"Science"},
+  {"id":"UC6107grRI4m0o2-emgoDnAA","name":"SmarterEveryDay","subject":"Science"},
+  {"id":"UCUHW94eEFW7hkUMVaZz4eDg","name":"minutephysics","subject":"Science"},
+  {"id":"UCoxcjq-8xIDTYp3uz647V5A","name":"Numberphile","subject":"Maths"},
+  {"id":"UCYO_jab_esuFRV4b17AJtAw","name":"3Blue1Brown","subject":"Maths"},
+  {"id":"UConVfxXodg78Tzh5nNu85Ew","name":"Welch Labs","subject":"Maths"},
+  {"id":"UCtYLUTtgS3k1Fg4y5tAhLbw","name":"StatQuest","subject":"Maths"},
+  {"id":"UC4a-Gbdw7vOaccHmFo40b9g","name":"Khan Academy","subject":"Maths"},
+  {"id":"UCLA_DiR1FfKNvjuUpBHmylQ","name":"NASA","subject":"Space & nature"},
+  {"id":"UCpVm7bg6pXKo1Pr6k5kxG9A","name":"National Geographic","subject":"Space & nature"},
+  {"id":"UCsooa4yRKGN_zEE8iknghZA","name":"TED-Ed","subject":"Big questions"},
+  {"id":"UCX6b17PVsYBQ0ip5gyeme-Q","name":"CrashCourse","subject":"Big questions"},
+  {"id":"UCBa659QWEk1AI4Tg--mrJ2A","name":"Tom Scott","subject":"Big questions"},
+  {"id":"UCY1kMZp36IQSyNx_9h4mpCg","name":"Mark Rober","subject":"Making & art"},
+  {"id":"UC5XMF3Inoi8R9nSI8ChOsdQ","name":"Art for Kids Hub","subject":"Making & art"}
+]
