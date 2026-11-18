@@ -55,7 +55,14 @@ dt{color:var(--soft)} dd{margin:0;overflow-wrap:anywhere;font-weight:700;color:v
 .field{margin:14px 0}
 .field label{display:block;font-weight:700;font-size:.9rem;color:var(--ink);margin-bottom:6px}
 .field input{width:100%;font:1rem var(--body);padding:12px 14px;border-radius:12px;border:1.5px solid var(--line);background:var(--card);color:var(--graphite)}
-.err{color:var(--bad);min-height:1.4em;font-size:.95rem;margin:8px 0 0}
+.err,.card .err{color:var(--bad);min-height:1.4em;font-size:.95rem;margin:8px 0 0}
+.tabs{display:flex;gap:6px;margin:4px 0 6px}
+.tabs button{flex:1;border:1.5px solid var(--line);background:transparent;color:var(--soft);font:700 .95rem var(--body);padding:9px;border-radius:12px;cursor:pointer}
+.tabs button[aria-selected="true"]{border-color:var(--ink);color:var(--ink);background:color-mix(in srgb,var(--ink) 7%,transparent)}
+.ssobar{background:color-mix(in srgb,var(--hl) 55%,var(--card));color:var(--graphite);border-radius:14px;padding:12px 14px;margin:0 0 14px;font-weight:700}
+.inline{display:flex;gap:8px;flex-wrap:wrap;align-items:end;margin-top:8px}
+.inline .field{flex:1;min-width:160px;margin:6px 0}
+.okmsg,.card .okmsg{color:var(--ok);font-weight:700;min-height:1.3em;font-size:.95rem;margin:6px 0 0}
 .small{font-size:.85rem;color:var(--soft)}
 [hidden]{display:none!important}
 </style>
@@ -69,50 +76,57 @@ dt{color:var(--soft)} dd{margin:0;overflow-wrap:anywhere;font-weight:700;color:v
 </div>
 
 <main>
-  <section id="signin" class="card">
-    <p class="hand">one account for everything</p>
+  <section id="signin" class="card" style="max-width:460px;margin:5vh auto 0">
+    <div class="ssobar" id="ssoBar" hidden></div>
+    <p class="hand">one account for every Chausima tool</p>
     <h1 style="font-size:2.2rem">Chausima Account</h1>
-    <p class="lede" style="margin-bottom:6px">Sign in with your Chausima address to see your account.</p>
+    <div class="tabs" role="tablist">
+      <button role="tab" id="tabIn" aria-selected="true">Sign in</button>
+      <button role="tab" id="tabNew" aria-selected="false">Create account</button>
+    </div>
     <form id="form" autocomplete="on">
-      <div class="field"><label for="em">Chausima address</label>
-        <input id="em" type="text" autocomplete="username" placeholder="name@chausima.com" autocapitalize="none" spellcheck="false" required></div>
+      <div class="field" id="nameField" hidden><label for="nm">Your name</label>
+        <input id="nm" type="text" autocomplete="name" maxlength="60"></div>
+      <div class="field"><label for="un">Username</label>
+        <input id="un" type="text" autocomplete="username" placeholder="yourname" autocapitalize="none" spellcheck="false" required>
+        <p class="small" id="unHint" hidden>Your Chausima address will be <b id="unShow">yourname</b>@chausima.com. It's for signing in to Chausima tools, not an email inbox.</p></div>
       <div class="field"><label for="pw">Password</label>
-        <input id="pw" type="password" autocomplete="current-password" required></div>
+        <input id="pw" type="password" autocomplete="current-password" required minlength="8"></div>
       <button class="btn" id="go">Sign in</button>
       <p class="err" id="err" role="alert"></p>
-      <p class="small">Your password goes straight to Chausima Mail's server to check it, and is forgotten when you close this tab. Using 2-step verification? Sign in with an app password, or open <a href="https://mail.chausima.com/admin/">Chausima Mail settings</a>.</p>
+      <p class="small" id="inNote">Have a Chausima Mail inbox? Sign in with your mail address and password.</p>
     </form>
   </section>
 
   <section id="home" hidden>
+    <div class="ssobar" id="ssoGo" hidden></div>
     <p class="hand" id="hello">hello!</p>
     <h1 id="name">Your account</h1>
-    <p class="lede">Manage your details, keep your account safe, and jump to any Chausima app.</p>
+    <p class="lede">Your Chausima Account signs you in to every Chausima tool.</p>
     <div class="grid">
       <div class="card">
         <h2>Personal info</h2>
-        <dl><dt>Name</dt><dd id="pName">—</dd><dt>Address</dt><dd id="pMail">—</dd><dt>Account</dt><dd id="pType">Chausima</dd></dl>
-        <a class="btn ghost" href="https://mail.chausima.com/admin/">Change your details</a>
+        <dl><dt>Name</dt><dd id="pName">—</dd><dt>Chausima address</dt><dd id="pMail">—</dd></dl>
+        <form class="inline" id="nameForm"><div class="field"><label for="newName">Change your name</label><input id="newName" type="text" maxlength="60" autocomplete="name"></div><button class="btn ghost">Save</button></form>
+        <p class="okmsg" id="nameMsg" role="status"></p>
       </div>
       <div class="card">
-        <h2>Security</h2>
-        <p>Your password, 2-step verification, passkeys and app passwords.</p>
-        <p class="tick" id="secOk">✓ Signed in safely</p>
-        <a class="btn" href="https://mail.chausima.com/admin/">Security settings</a>
+        <h2>Password</h2>
+        <form id="pwForm">
+          <div class="field"><label for="oldPw">Current password</label><input id="oldPw" type="password" autocomplete="current-password" required></div>
+          <div class="field"><label for="newPw">New password</label><input id="newPw" type="password" autocomplete="new-password" minlength="8" required></div>
+          <button class="btn">Change password</button>
+        </form>
+        <p class="okmsg" id="pwMsg" role="status"></p>
       </div>
       <div class="card">
-        <h2>Storage</h2>
-        <p id="stText">Checking…</p>
-        <div class="bar" aria-hidden="true"><i id="stBar" style="width:0"></i></div>
-        <p class="small" id="stMail"></p>
-      </div>
-      <div class="card">
-        <h2>Where you can sign in</h2>
-        <p>Use <b>Sign in with Chausima</b> on the Homework Launchpad and its apps: HWLAI, Level Up, the Suite and the shop.</p>
-        <a class="btn ghost" href="https://civilinitiatives.org/">Open the Launchpad</a>
+        <h2>Where it works</h2>
+        <p><b>Chausima Suite</b>: Docs, Sheets, Slides, Forms, Whiteboard and more. Choose <b>Sign in with Chausima</b> there.</p>
+        <a class="btn" href="https://suite.chausima.com/">Open Chausima Suite</a>
+        <p class="small" style="margin-top:10px">A Chausima Account doesn't come with an email inbox.</p>
       </div>
       <div class="card wide">
-        <h2>Your Chausima apps</h2>
+        <h2>Chausima apps</h2>
         <div class="apps" id="apps"></div>
       </div>
     </div>
@@ -120,96 +134,93 @@ dt{color:var(--soft)} dd{margin:0;overflow-wrap:anywhere;font-weight:700;color:v
 </main>
 
 <script>
-/* My Chausima Account. Signing in checks the address and password with Chausima Mail's own server (JMAP),
-   straight from this page; nothing goes anywhere else. The sign-in is kept only for this tab. */
+/* My Chausima Account: talks to Chausima ID on HEH-Live. Your sign-in is kept on this device for 30 days
+   (sign out to forget it). Passwords are only ever checked by the server, which stores just a scrambled hash. */
 (function () {
-  var MAIL = "https://mail.chausima.com";
+  var ID = "https://hehs-live.duckdns.org/chausima-id";
   var $ = function (id) { return document.getElementById(id); };
-  var auth = null, api = null, acct = null;
-  try { auth = sessionStorage.getItem("chz.acct"); } catch (e) {}
+  var tok = null, user = null, mode = "in";
+  try { tok = localStorage.getItem("chz.session"); } catch (e) {}
+  var sso = new URLSearchParams(location.search).get("sso");
+  var ssoApp = "the app";
+  if (sso) { try { ssoApp = JSON.parse(atob(sso.split(".")[1].replace(/-/g, "+").replace(/_/g, "/"))).app || ssoApp; } catch (e) {} }
 
   var APPS = [
-    ["Mail", "https://mail.chausima.com/", "#c8312b", '<rect x="4" y="6" width="16" height="12" rx="2"/><path d="M4.5 7l7.5 6 7.5-6"/>'],
+    ["Suite", "https://suite.chausima.com/", "#1f8a55", '<path d="M7 3.5h7l4 4V20.5H7z"/><path d="M14 3.5v4h4M9.5 12h6M9.5 15h6M9.5 18h4"/>'],
     ["CTube", "https://chausima.com/ctube/", "#d23b3b", '<rect x="3.5" y="6" width="17" height="12" rx="3"/><path d="M10.5 9.5v5l4-2.5z"/>'],
-    ["HWL Search", "https://civilinitiatives.org/os/", "#3b6cf0", '<circle cx="11" cy="11" r="6"/><path d="M16 16l4 4"/>'],
     ["HWL Browser", "https://net.chausima.com/", "#d9408f", '<circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.5 2.6 3.6 5.4 3.6 8.5S14.5 17.9 12 20.5C9.5 17.9 8.4 15.1 8.4 12S9.5 6.1 12 3.5z"/>'],
-    ["Launchpad", "https://civilinitiatives.org/", "#1f4fd8", '<path d="M12 3c3 2.5 4 6 3.6 9.5H8.4C8 9 9 5.5 12 3z"/><path d="M8.6 12.5L6 16l3-.8M15.4 12.5L18 16l-3-.8"/>'],
-    ["HWL AI", "https://hwlai.civilinitiatives.org/", "#3a3f8f", '<path d="M12 3.5l1.8 4.7 4.7 1.8-4.7 1.8L12 16.5l-1.8-4.7L5.5 10l4.7-1.8z"/>'],
+    ["HWL Search", "https://civilinitiatives.org/os/", "#3b6cf0", '<circle cx="11" cy="11" r="6"/><path d="M16 16l4 4"/>'],
+    ["Mail", "https://mail.chausima.com/", "#c8312b", '<rect x="4" y="6" width="16" height="12" rx="2"/><path d="M4.5 7l7.5 6 7.5-6"/>'],
     ["Chausima", "https://chausima.com/", "#1f3a93", '<circle cx="12" cy="12" r="8.5"/><path d="M15.5 9a4.5 4.5 0 1 0 0 6"/>']
   ];
   $("apps").innerHTML = APPS.map(function (a) {
     return '<a href="' + a[1] + '"><i style="background:' + a[2] + '"><svg viewBox="0 0 24 24" aria-hidden="true">' + a[3] + "</svg></i>" + a[0] + "</a>";
   }).join("");
 
-  function jmapSession() {
-    return fetch(MAIL + "/jmap/session", { headers: { Authorization: "Basic " + auth, Accept: "application/json" } }).then(function (r) {
-      if (r.status === 401 || r.status === 403) throw new Error("wrong");
-      if (!r.ok) throw new Error("down");
-      return r.json();
-    });
+  function call(path, body, auth) {
+    var h = { "content-type": "application/json" }; if (auth && tok) h.Authorization = "Chausima " + tok;
+    return fetch(ID + path, { method: "POST", headers: h, body: JSON.stringify(body || {}) }).then(function (r) {
+      return r.json().catch(function () { return { ok: false, reason: "Chausima accounts aren't switched on yet." }; }).then(function (j) { j._status = r.status; return j; });
+    }).catch(function () { return { ok: false, reason: "Can't reach Chausima right now. Check your connection." }; });
   }
-  function jmap(calls) {
-    return fetch(api, { method: "POST", headers: { Authorization: "Basic " + auth, "Content-Type": "application/json" },
-      body: JSON.stringify({ using: ["urn:ietf:params:jmap:core", "urn:ietf:params:jmap:mail", "urn:ietf:params:jmap:quota"], methodCalls: calls }) })
-      .then(function (r) { if (!r.ok) throw new Error("down"); return r.json(); });
+  function setMode(m) {
+    mode = m; var nw = m === "new";
+    $("tabIn").setAttribute("aria-selected", String(!nw)); $("tabNew").setAttribute("aria-selected", String(nw));
+    $("nameField").hidden = !nw; $("unHint").hidden = !nw; $("inNote").hidden = nw; $("nm").required = nw;
+    $("go").textContent = nw ? "Create account" : "Sign in";
+    $("pw").autocomplete = nw ? "new-password" : "current-password"; $("err").textContent = "";
   }
-  function size(b) { return b >= 1e9 ? (b / 1e9).toFixed(1) + " GB" : b >= 1e6 ? Math.round(b / 1e6) + " MB" : Math.max(1, Math.round(b / 1e3)) + " KB"; }
+  $("tabIn").onclick = function () { setMode("in"); }; $("tabNew").onclick = function () { setMode("new"); };
+  $("un").addEventListener("input", function () { $("unShow").textContent = this.value.trim().toLowerCase().replace(/@chausima\.com$/, "") || "yourname"; });
 
-  function open(s, email) {
-    api = s.apiUrl || MAIL + "/jmap/";
-    acct = (s.primaryAccounts || {})["urn:ietf:params:jmap:mail"] || Object.keys(s.accounts || {})[0];
-    var a = (s.accounts || {})[acct] || {};
-    var shown = a.name && a.name.indexOf("@") === -1 ? a.name : "";
-    var first = (shown || email.split("@")[0]).split(/[ ._]/)[0];
-    first = first.charAt(0).toUpperCase() + first.slice(1);
-    $("name").textContent = first + "'s account";
-    $("hello").textContent = "hello, " + first + "!";
-    $("pName").textContent = shown || first; $("pMail").textContent = email;
+  function show(u) {
+    user = u;
+    var first = (u.name || u.username).split(" ")[0];
+    $("name").textContent = first + "'s account"; $("hello").textContent = "hello, " + first + "!";
+    $("pName").textContent = u.name; $("pMail").textContent = u.email; $("newName").value = u.name;
     $("signin").hidden = true; $("home").hidden = false; $("out").hidden = false;
-    document.title = "Chausima Account · " + email;
-    jmap([["Quota/get", { accountId: acct, ids: null }, "q"],
-          ["Mailbox/get", { accountId: acct, properties: ["role", "unreadEmails", "totalEmails"] }, "m"]]).then(function (j) {
-      var q = null, mb = null;
-      (j.methodResponses || []).forEach(function (m) { if (m[0] === "Quota/get") q = m[1]; if (m[0] === "Mailbox/get") mb = m[1]; });
-      var oct = q && (q.list || []).filter(function (x) { return x.resourceType === "octets"; })[0];
-      if (oct && oct.hardLimit) {
-        var pc = Math.min(100, Math.round(100 * oct.used / oct.hardLimit));
-        $("stText").textContent = size(oct.used) + " of " + size(oct.hardLimit) + " used";
-        $("stBar").style.width = pc + "%";
-      } else if (oct) { $("stText").textContent = size(oct.used) + " used"; $("stBar").style.width = "2%"; }
-      else $("stText").textContent = "Storage details aren't available.";
-      if (mb && mb.list) {
-        var tot = 0, unread = 0;
-        mb.list.forEach(function (x) { tot += x.totalEmails || 0; if (x.role === "inbox") unread = x.unreadEmails || 0; });
-        $("stMail").textContent = tot.toLocaleString("en-GB") + " emails · " + unread + " unread in your inbox";
-      }
-    }).catch(function () { $("stText").textContent = "Storage details aren't available right now."; });
+    document.title = "Chausima Account · " + u.email;
+    if (sso) {
+      var bar = $("ssoGo"); bar.hidden = false;
+      bar.innerHTML = 'Continue to <span id="ssoName"></span> as <span id="ssoWho"></span>? <button class="btn" id="ssoYes" style="margin:8px 0 0">Continue</button> <button class="btn ghost" id="ssoNo" style="margin:8px 0 0">Use another account</button>';
+      $("ssoName").textContent = ssoApp; $("ssoWho").textContent = u.email;
+      $("ssoYes").onclick = function () {
+        this.disabled = true; this.textContent = "Signing you in…";
+        call("/approve", { req: sso }, true).then(function (j) { if (j.ok) location.href = j.redirect; else { bar.textContent = j.reason || "That didn't work. Go back to the app and try again."; } });
+      };
+      $("ssoNo").onclick = signOut;
+    }
   }
-
-  function signOut() { auth = null; try { sessionStorage.removeItem("chz.acct"); } catch (e) {} location.reload(); }
+  function signOut() { tok = null; try { localStorage.removeItem("chz.session"); } catch (e) {} $("home").hidden = true; $("signin").hidden = false; $("out").hidden = true; $("pw").value = ""; }
   $("out").addEventListener("click", signOut);
 
+  if (sso) { var b = $("ssoBar"); b.hidden = false; b.textContent = "Sign in with your Chausima Account to continue to " + ssoApp + "."; }
+
   $("form").addEventListener("submit", function (e) {
+    e.preventDefault(); $("err").textContent = "";
+    var go = $("go"), was = go.textContent; go.disabled = true; go.textContent = mode === "new" ? "Creating…" : "Signing in…";
+    var body = { username: $("un").value.trim(), password: $("pw").value };
+    if (mode === "new") body.name = $("nm").value.trim();
+    call(mode === "new" ? "/signup" : "/login", body).then(function (j) {
+      go.disabled = false; go.textContent = was;
+      if (!j.ok) { $("err").textContent = j.reason || "That didn't work."; return; }
+      tok = j.token; try { localStorage.setItem("chz.session", tok); } catch (e2) {}
+      $("pw").value = ""; show(j.user);
+    });
+  });
+  $("nameForm").addEventListener("submit", function (e) {
     e.preventDefault();
-    var em = $("em").value.trim().toLowerCase(), pw = $("pw").value;
-    if (em && em.indexOf("@") === -1) em += "@chausima.com";
-    $("err").textContent = "";
-    if (!/^[^@\s]+@chausima\.com$/.test(em)) { $("err").textContent = "Use your @chausima.com address."; return; }
-    $("go").disabled = true; $("go").textContent = "Signing in…";
-    auth = btoa(unescape(encodeURIComponent(em + ":" + pw)));
-    jmapSession().then(function (s) {
-      try { sessionStorage.setItem("chz.acct", auth); sessionStorage.setItem("chz.email", em); } catch (e2) {}
-      $("pw").value = ""; open(s, em);
-    }).catch(function (x) {
-      auth = null;
-      $("err").textContent = x.message === "wrong" ? "That address and password don't match." : "Chausima Mail isn't answering right now. Try again soon (it sleeps 11 pm – 6 am).";
-    }).then(function () { $("go").disabled = false; $("go").textContent = "Sign in"; });
+    call("/name", { name: $("newName").value.trim() }, true).then(function (j) { $("nameMsg").textContent = j.ok ? "Saved." : (j.reason || "Couldn't save."); $("nameMsg").style.color = j.ok ? "" : "var(--bad)"; if (j.ok) show(j.user); });
+  });
+  $("pwForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    call("/password", { old: $("oldPw").value, new: $("newPw").value }, true).then(function (j) {
+      $("pwMsg").textContent = j.ok ? "Password changed." : (j.reason || "Couldn't change it."); $("pwMsg").style.color = j.ok ? "" : "var(--bad)";
+      if (j.ok) { $("oldPw").value = ""; $("newPw").value = ""; }
+    });
   });
 
-  if (auth) {
-    var em0 = ""; try { em0 = sessionStorage.getItem("chz.email") || ""; } catch (e) {}
-    jmapSession().then(function (s) { open(s, em0); }).catch(function () { auth = null; try { sessionStorage.removeItem("chz.acct"); } catch (e) {} });
-  }
+  if (tok) call("/me", {}, true).then(function (j) { if (j.ok) show(j.user); else if (j._status === 401) signOut(); });
 })();
 </script>
 </body>
