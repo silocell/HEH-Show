@@ -12,6 +12,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
 <script src="/apps.js" defer></script>
+<script src="/build-intro.js?b=20261118build"></script>
 <style>
 :root{
   --bg:#ffffff; --ink:#17245c; --text:#232838; --soft:#5f6680; --line:#e4e7f0; --well:#f3f5fa;
@@ -143,14 +144,8 @@ body.found footer{display:none}
   var $ = function (id) { return document.getElementById(id); };
   var hero = $("hero"), body = document.body;
 
-  /* the intro plays once per visit; any key or tap skips it */
-  var played = false; try { played = sessionStorage.getItem("chz.intro") === "1"; sessionStorage.setItem("chz.intro", "1"); } catch (e) {}
-  if (!played && !location.search) {
-    body.classList.add("intro");
-    var skip = function () { body.classList.remove("intro"); removeEventListener("keydown", skip); removeEventListener("pointerdown", skip); };
-    addEventListener("keydown", skip); addEventListener("pointerdown", skip);
-    setTimeout(skip, 2200);
-  }
+  /* the build intro plays once per visit; any key or tap skips it */
+  if (!location.search && window.BrandIntro) BrandIntro.play("home");
 
   var APPS = [
     ["Suite", "https://suite.chausima.com/", "var(--c4)", '<path d="M7 3.5h7l4 4V20.5H7z"/><path d="M14 3.5v4h4M9.5 12h6M9.5 15h6M9.5 18h4"/>'],
