@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chausima Account</title>
+<meta name="description" content="Your Chausima Account: your details, security, storage and every Chausima app in one place.">
+<link rel="icon" href="/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Kalam:wght@400;700&display=swap" rel="stylesheet">
+<script src="/apps.js" defer></script>
+<style>
+:root{
+  --paper:#fdfdf8; --grid:#d5e4f5; --margin:#e2474b; --ink:#1f3a93; --graphite:#262a33; --soft:#5b6170;
+  --hl:#ffe94a; --card:#ffffff; --line:#c9d6e8; --ok:#1f8a55; --bad:#c8312b;
+  --display:"Bricolage Grotesque",system-ui,sans-serif; --body:"Atkinson Hyperlegible",system-ui,sans-serif; --hand:"Kalam","Comic Sans MS",cursive;
+}
+@media (prefers-color-scheme:dark){:root{
+  --paper:#1d2a24; --grid:rgba(255,255,255,.05); --margin:#f07a7d; --ink:#f3f1e4; --graphite:#ecebe2; --soft:#aab4ad;
+  --hl:#e8d34a; --card:#24332c; --line:rgba(255,255,255,.14); --ok:#5fd39a; --bad:#ff8b8e; color-scheme:dark}}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;color:var(--graphite);font:17px/1.55 var(--body);
+  background:var(--paper) linear-gradient(var(--grid) 1px,transparent 1px) 0 0/100% 28px}
+a{color:var(--ink)}
+:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+.top{display:flex;align-items:center;gap:10px;padding:12px 16px;max-width:980px;margin:0 auto}
+.brand{font:800 1.25rem var(--display);color:var(--ink);text-decoration:none;letter-spacing:-.02em}
+.brand span{font:400 1.05rem var(--hand);color:var(--margin);margin-left:4px}
+.top .sp{flex:1}
+main{max-width:980px;margin:0 auto;padding:8px 16px 64px}
+h1{font:800 clamp(2.2rem,6vw,3.6rem)/1 var(--display);color:var(--ink);letter-spacing:-.03em;margin:18px 0 6px}
+.hand{font-family:var(--hand);color:var(--margin);font-size:1.2rem;margin:0}
+.lede{color:var(--soft);margin:6px 0 26px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.card{background:var(--card);border:1.5px solid var(--line);border-radius:18px;padding:18px 18px 16px}
+.card h2{font:700 1.15rem var(--display);color:var(--ink);margin:0 0 4px}
+.card p{margin:4px 0;color:var(--soft);font-size:.95rem}
+dl{margin:10px 0 0;display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:.95rem}
+dt{color:var(--soft)} dd{margin:0;overflow-wrap:anywhere;font-weight:700;color:var(--graphite)}
+.bar{height:10px;border-radius:6px;background:var(--line);overflow:hidden;margin:10px 0 6px}
+.bar i{display:block;height:100%;background:var(--ink);border-radius:6px}
+.btn{display:inline-flex;align-items:center;gap:8px;border:2px solid var(--ink);background:var(--ink);color:var(--paper);font:700 .95rem var(--body);
+  padding:10px 16px;border-radius:12px;cursor:pointer;text-decoration:none;margin-top:10px}
+.btn.ghost{background:transparent;color:var(--ink)}
+.apps{display:grid;grid-template-columns:repeat(auto-fill,minmax(112px,1fr));gap:10px;margin-top:10px}
+.apps a{display:flex;flex-direction:column;align-items:center;gap:8px;padding:14px 6px;border-radius:14px;text-decoration:none;color:var(--graphite);font-size:.9rem;text-align:center}
+.apps a:hover{background:color-mix(in srgb,var(--ink) 8%,transparent)}
+.apps i{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;color:#fff;font-style:normal}
+.apps svg{width:24px;height:24px;fill:none;stroke:#fff;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.tick{color:var(--ok);font-weight:700}
+.wide{grid-column:1/-1}
+/* sign-in */
+#signin{max-width:440px;margin:6vh auto 0}
+.field{margin:14px 0}
+.field label{display:block;font-weight:700;font-size:.9rem;color:var(--ink);margin-bottom:6px}
+.field input{width:100%;font:1rem var(--body);padding:12px 14px;border-radius:12px;border:1.5px solid var(--line);background:var(--card);color:var(--graphite)}
+.err{color:var(--bad);min-height:1.4em;font-size:.95rem;margin:8px 0 0}
+.small{font-size:.85rem;color:var(--soft)}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<div class="top">
+  <a class="brand" href="/">Chausima<span>account</span></a>
+  <div class="sp"></div>
+  <span data-chausima-apps></span>
+  <button class="btn ghost" id="out" hidden style="margin:0">Sign out</button>
+</div>
+
+<main>
+  <section id="signin" class="card">
+    <p class="hand">one account for everything</p>
+    <h1 style="font-size:2.2rem">Chausima Account</h1>
+    <p class="lede" style="margin-bottom:6px">Sign in with your Chausima address to see your account.</p>
+    <form id="form" autocomplete="on">
+      <div class="field"><label for="em">Chausima address</label>
+        <input id="em" type="text" autocomplete="username" placeholder="name@chausima.com" autocapitalize="none" spellcheck="false" required></div>
+      <div class="field"><label for="pw">Password</label>
+        <input id="pw" type="password" autocomplete="current-password" required></div>
+      <button class="btn" id="go">Sign in</button>
+      <p class="err" id="err" role="alert"></p>
+      <p class="small">Your password goes straight to Chausima Mail's server to check it, and is forgotten when you close this tab. Using 2-step verification? Sign in with an app password, or open <a href="https://mail.chausima.com/admin/">Chausima Mail settings</a>.</p>
+    </form>
+  </section>
+
+  <section id="home" hidden>
+    <p class="hand" id="hello">hello!</p>
+    <h1 id="name">Your account</h1>
+    <p class="lede">Manage your details, keep your account safe, and jump to any Chausima app.</p>
+    <div class="grid">
+      <div class="card">
+        <h2>Personal info</h2>
+        <dl><dt>Name</dt><dd id="pName">—</dd><dt>Address</dt><dd id="pMail">—</dd><dt>Account</dt><dd id="pType">Chausima</dd></dl>
+        <a class="btn ghost" href="https://mail.chausima.com/admin/">Change your details</a>
+      </div>
+      <div class="card">
+        <h2>Security</h2>
+        <p>Your password, 2-step verification, passkeys and app passwords.</p>
+        <p class="tick" id="secOk">✓ Signed in safely</p>
+        <a class="btn" href="https://mail.chausima.com/admin/">Security settings</a>
+      </div>
+      <div class="card">
+        <h2>Storage</h2>
+        <p id="stText">Checking…</p>
+        <div class="bar" aria-hidden="true"><i id="stBar" style="width:0"></i></div>
+        <p class="small" id="stMail"></p>
+      </div>
+      <div class="card">
+        <h2>Where you can sign in</h2>
+        <p>Use <b>Sign in with Chausima</b> on the Homework Launchpad and its apps: HWLAI, Level Up, the Suite and the shop.</p>
+        <a class="btn ghost" href="https://civilinitiatives.org/">Open the Launchpad</a>
+      </div>
+      <div class="card wide">
+        <h2>Your Chausima apps</h2>
+        <div class="apps" id="apps"></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+/* My Chausima Account. Signing in checks the address and password with Chausima Mail's own server (JMAP),
+   straight from this page; nothing goes anywhere else. The sign-in is kept only for this tab. */
+(function () {
+  var MAIL = "https://mail.chausima.com";
+  var $ = function (id) { return document.getElementById(id); };
+  var auth = null, api = null, acct = null;
+  try { auth = sessionStorage.getItem("chz.acct"); } catch (e) {}
+
+  var APPS = [
+    ["Mail", "https://mail.chausima.com/", "#c8312b", '<rect x="4" y="6" width="16" height="12" rx="2"/><path d="M4.5 7l7.5 6 7.5-6"/>'],
+    ["CTube", "https://chausima.com/ctube/", "#d23b3b", '<rect x="3.5" y="6" width="17" height="12" rx="3"/><path d="M10.5 9.5v5l4-2.5z"/>'],
+    ["HWL Search", "https://civilinitiatives.org/os/", "#3b6cf0", '<circle cx="11" cy="11" r="6"/><path d="M16 16l4 4"/>'],
+    ["HWL Browser", "https://net.chausima.com/", "#d9408f", '<circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.5 2.6 3.6 5.4 3.6 8.5S14.5 17.9 12 20.5C9.5 17.9 8.4 15.1 8.4 12S9.5 6.1 12 3.5z"/>'],
+    ["Launchpad", "https://civilinitiatives.org/", "#1f4fd8", '<path d="M12 3c3 2.5 4 6 3.6 9.5H8.4C8 9 9 5.5 12 3z"/><path d="M8.6 12.5L6 16l3-.8M15.4 12.5L18 16l-3-.8"/>'],
+    ["HWL AI", "https://hwlai.civilinitiatives.org/", "#3a3f8f", '<path d="M12 3.5l1.8 4.7 4.7 1.8-4.7 1.8L12 16.5l-1.8-4.7L5.5 10l4.7-1.8z"/>'],
+    ["Chausima", "https://chausima.com/", "#1f3a93", '<circle cx="12" cy="12" r="8.5"/><path d="M15.5 9a4.5 4.5 0 1 0 0 6"/>']
+  ];
+  $("apps").innerHTML = APPS.map(function (a) {
+    return '<a href="' + a[1] + '"><i style="background:' + a[2] + '"><svg viewBox="0 0 24 24" aria-hidden="true">' + a[3] + "</svg></i>" + a[0] + "</a>";
+  }).join("");
+
+  function jmapSession() {
+    return fetch(MAIL + "/jmap/session", { headers: { Authorization: "Basic " + auth, Accept: "application/json" } }).then(function (r) {
+      if (r.status === 401 || r.status === 403) throw new Error("wrong");
+      if (!r.ok) throw new Error("down");
+      return r.json();
+    });
+  }
+  function jmap(calls) {
+    return fetch(api, { method: "POST", headers: { Authorization: "Basic " + auth, "Content-Type": "application/json" },
+      body: JSON.stringify({ using: ["urn:ietf:params:jmap:core", "urn:ietf:params:jmap:mail", "urn:ietf:params:jmap:quota"], methodCalls: calls }) })
+      .then(function (r) { if (!r.ok) throw new Error("down"); return r.json(); });
+  }
+  function size(b) { return b >= 1e9 ? (b / 1e9).toFixed(1) + " GB" : b >= 1e6 ? Math.round(b / 1e6) + " MB" : Math.max(1, Math.round(b / 1e3)) + " KB"; }
+
+  function open(s, email) {
+    api = s.apiUrl || MAIL + "/jmap/";
+    acct = (s.primaryAccounts || {})["urn:ietf:params:jmap:mail"] || Object.keys(s.accounts || {})[0];
+    var a = (s.accounts || {})[acct] || {};
+    var shown = a.name && a.name.indexOf("@") === -1 ? a.name : "";
+    var first = (shown || email.split("@")[0]).split(/[ ._]/)[0];
+    first = first.charAt(0).toUpperCase() + first.slice(1);
+    $("name").textContent = first + "'s account";
+    $("hello").textContent = "hello, " + first + "!";
+    $("pName").textContent = shown || first; $("pMail").textContent = email;
+    $("signin").hidden = true; $("home").hidden = false; $("out").hidden = false;
+    document.title = "Chausima Account · " + email;
+    jmap([["Quota/get", { accountId: acct, ids: null }, "q"],
+          ["Mailbox/get", { accountId: acct, properties: ["role", "unreadEmails", "totalEmails"] }, "m"]]).then(function (j) {
+      var q = null, mb = null;
+      (j.methodResponses || []).forEach(function (m) { if (m[0] === "Quota/get") q = m[1]; if (m[0] === "Mailbox/get") mb = m[1]; });
+      var oct = q && (q.list || []).filter(function (x) { return x.resourceType === "octets"; })[0];
+      if (oct && oct.hardLimit) {
+        var pc = Math.min(100, Math.round(100 * oct.used / oct.hardLimit));
+        $("stText").textContent = size(oct.used) + " of " + size(oct.hardLimit) + " used";
+        $("stBar").style.width = pc + "%";
+      } else if (oct) { $("stText").textContent = size(oct.used) + " used"; $("stBar").style.width = "2%"; }
+      else $("stText").textContent = "Storage details aren't available.";
+      if (mb && mb.list) {
+        var tot = 0, unread = 0;
+        mb.list.forEach(function (x) { tot += x.totalEmails || 0; if (x.role === "inbox") unread = x.unreadEmails || 0; });
+        $("stMail").textContent = tot.toLocaleString("en-GB") + " emails · " + unread + " unread in your inbox";
+      }
+    }).catch(function () { $("stText").textContent = "Storage details aren't available right now."; });
+  }
+
+  function signOut() { auth = null; try { sessionStorage.removeItem("chz.acct"); } catch (e) {} location.reload(); }
+  $("out").addEventListener("click", signOut);
+
+  $("form").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var em = $("em").value.trim().toLowerCase(), pw = $("pw").value;
+    if (em && em.indexOf("@") === -1) em += "@chausima.com";
+    $("err").textContent = "";
+    if (!/^[^@\s]+@chausima\.com$/.test(em)) { $("err").textContent = "Use your @chausima.com address."; return; }
+    $("go").disabled = true; $("go").textContent = "Signing in…";
+    auth = btoa(unescape(encodeURIComponent(em + ":" + pw)));
+    jmapSession().then(function (s) {
+      try { sessionStorage.setItem("chz.acct", auth); sessionStorage.setItem("chz.email", em); } catch (e2) {}
+      $("pw").value = ""; open(s, em);
+    }).catch(function (x) {
+      auth = null;
+      $("err").textContent = x.message === "wrong" ? "That address and password don't match." : "Chausima Mail isn't answering right now. Try again soon (it sleeps 11 pm – 6 am).";
+    }).then(function () { $("go").disabled = false; $("go").textContent = "Sign in"; });
+  });
+
+  if (auth) {
+    var em0 = ""; try { em0 = sessionStorage.getItem("chz.email") || ""; } catch (e) {}
+    jmapSession().then(function (s) { open(s, em0); }).catch(function () { auth = null; try { sessionStorage.removeItem("chz.acct"); } catch (e) {} });
+  }
+})();
+</script>
+</body>
+</html>

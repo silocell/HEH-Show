@@ -31,6 +31,8 @@
       icon: '<rect x="3.5" y="6" width="17" height="12" rx="3"/><path d="M10.5 9.5v5l4-2.5z" fill="currentColor"/>' },
     { id: "hwlai", name: "HWL AI", url: "https://hwlai.civilinitiatives.org/", bg: "#3a3f8f", hosts: ["hwlai.civilinitiatives.org"],
       icon: '<path d="M12 3.5l1.8 4.7 4.7 1.8-4.7 1.8L12 16.5l-1.8-4.7L5.5 10l4.7-1.8z"/><path d="M18 15l.9 2.1 2.1.9-2.1.9L18 21l-.9-2.1-2.1-.9 2.1-.9z"/>' },
+    { id: "account", name: "Account", url: "https://chausima.com/account/", bg: "#1f8a55", cpath: "/account",
+      icon: '<circle cx="12" cy="9" r="3.5"/><path d="M5 19.5c1.2-3.4 4-5 7-5s5.8 1.6 7 5"/>' },
     { id: "chausima", name: "Chausima", url: "https://chausima.com/", bg: "#1f3a93", hosts: ["chausima.com", "www.chausima.com"],
       icon: '<circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.5 2.6 3.6 5.4 3.6 8.5S14.5 17.9 12 20.5C9.5 17.9 8.4 15.1 8.4 12S9.5 6.1 12 3.5z"/>' }
   ];
@@ -40,6 +42,7 @@
     for (var i = 0; i < APPS.length; i++) {
       var a = APPS[i];
       if (a.path && h === "suite.civilinitiatives.org" && p.indexOf(a.path) === 0) return a.id;
+      if (a.cpath && (h === "chausima.com" || h === "www.chausima.com") && p.indexOf(a.cpath) === 0) return a.id;
       if (a.hosts && a.hosts.indexOf(h) >= 0) return a.id;
     }
     return "";
